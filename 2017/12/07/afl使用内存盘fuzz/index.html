@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>afl使用内存盘fuzz | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AFL-fuzz 使用内存盘读写数据markFuzzing 的过程中对磁盘的读写量是非常大的。长时间的fuzzing对SSD和机械硬盘来说都是很伤使用寿命的。为了钱包和硬盘中的其它数据考虑，fuzzing软件最好用内存盘来存放输入输出数据。具体命令如下： 123mkdir /tmp/afl-ramdisk &amp;amp;&amp;amp; chmod 777 /tmp/afl-ramdiskmount -t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="afl使用内存盘fuzz">
+<meta property="og:url" content="http://yoursite.com/2017/12/07/afl使用内存盘fuzz/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="AFL-fuzz 使用内存盘读写数据markFuzzing 的过程中对磁盘的读写量是非常大的。长时间的fuzzing对SSD和机械硬盘来说都是很伤使用寿命的。为了钱包和硬盘中的其它数据考虑，fuzzing软件最好用内存盘来存放输入输出数据。具体命令如下： 123mkdir /tmp/afl-ramdisk &amp;amp;&amp;amp; chmod 777 /tmp/afl-ramdiskmount -t">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-12-07T15:52:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="afl使用内存盘fuzz">
+<meta name="twitter:description" content="AFL-fuzz 使用内存盘读写数据markFuzzing 的过程中对磁盘的读写量是非常大的。长时间的fuzzing对SSD和机械硬盘来说都是很伤使用寿命的。为了钱包和硬盘中的其它数据考虑，fuzzing软件最好用内存盘来存放输入输出数据。具体命令如下： 123mkdir /tmp/afl-ramdisk &amp;amp;&amp;amp; chmod 777 /tmp/afl-ramdiskmount -t">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-afl使用内存盘fuzz" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/07/afl使用内存盘fuzz/" class="article-date">
+  <time datetime="2017-12-07T15:42:27.000Z" itemprop="datePublished">2017-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      afl使用内存盘fuzz
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AFL-fuzz-使用内存盘读写数据"><a href="#AFL-fuzz-使用内存盘读写数据" class="headerlink" title="AFL-fuzz 使用内存盘读写数据"></a>AFL-fuzz 使用内存盘读写数据</h1><h2 id="mark"><a href="#mark" class="headerlink" title="mark"></a>mark</h2><p>Fuzzing 的过程中对磁盘的读写量是非常大的。长时间的fuzzing对SSD和机械硬盘来说都是很伤使用寿命的。<br>为了钱包和硬盘中的其它数据考虑，fuzzing软件最好用内存盘来存放输入输出数据。<br>具体命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /tmp/afl-ramdisk &amp;&amp; chmod 777 /tmp/afl-ramdisk</span><br><span class="line">mount -t tmpfs -o size=512M tmpfs /tmp/afl-ramdisk</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>size的大小根据个人情况设定。执行玩上面两条命令，然后把输入输出文件夹或者整个fuzz项目都转移到新建的内存文件夹里面就好了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/07/afl使用内存盘fuzz/" data-id="cjk8lemkr000948s3pv53h07e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/07/afl-README-cn/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          afl-README-cn
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/13/web常见通用漏洞原理总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">web常见通用漏洞原理总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPP/">GPP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http代理/">http代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mestasploit/">mestasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞分析/">漏洞分析</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GPP/" style="font-size: 10px;">GPP</a> <a href="/tags/http代理/" style="font-size: 10px;">http代理</a> <a href="/tags/mestasploit/" style="font-size: 10px;">mestasploit</a> <a href="/tags/漏洞分析/" style="font-size: 20px;">漏洞分析</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/跨域方案枚举/">跨域方案枚举</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/24/免杀Powershell/">免杀Powershell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/11/metasploit自动化攻击/">metasploit自动化攻击</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/VBScript挂马/">VBScript挂马</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/04/使用GPP漏洞进行域渗透/">使用GPP漏洞进行域渗透</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

