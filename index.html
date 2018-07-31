@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next pisces use-motion" lang="">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,7 +84,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '6.3.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -218,7 +218,7 @@
           
           <li class="menu-item menu-item-home menu-item-active">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Accueil</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
   </li>
         
         
@@ -226,16 +226,13 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
   </li>
 
       
       
     </ul>
   
-
-  
-    
 
   
 
@@ -258,9 +255,163 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+            
+
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/跨域方案枚举/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/24/跨域方案枚举/" itemprop="url">
+                  跨域方案枚举
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-03-24 17:34:12 / Updated at: 17:36:26" itemprop="dateCreated datePublished" datetime="2018-03-24T17:34:12+08:00">2018-03-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JS跨域问题重理解"><a href="#JS跨域问题重理解" class="headerlink" title="JS跨域问题重理解"></a>JS跨域问题重理解</h1><p>为什么跨域会出现问题？因为浏览器设定的同源策略是的JS文件不能随心所欲的从任意网站读取数据。一定程度上保证了数据的安全性。</p>
+<p>跨域的问题是跨域前端和被跨域后端的问题。<br>如果需要进行跨域数据传输。那么可以是用一下方法</p>
+<h2 id="0x01-使用跨域资源共享（CORS）"><a href="#0x01-使用跨域资源共享（CORS）" class="headerlink" title="0x01  使用跨域资源共享（CORS）"></a>0x01  使用跨域资源共享（CORS）</h2><p>CORS定义了浏览器域服务器应该如何沟通。CORS背后的基本思想就是使用自定义的HTTP头部让浏览器与服务器进行沟通。<br>如渗透中常常见到的： Access-Control-Allow-Origin: * </p>
+<h2 id="0x02-使用JSONP"><a href="#0x02-使用JSONP" class="headerlink" title="0x02  使用JSONP"></a>0x02  使用JSONP</h2><p>JSONP 学名 填充式JSON。<br>JSONP名字有些抽象，但是其实是JSON对象的一种用法。抽象的概括一下就是被包含在函数调用中的JSON。<br>callback({“name”,”name1”});<br>由上行代码可看出JSONP由两部分组成:回调函数和JSON数据。<br>回调函数是在响应到来的时候页面执行的函数。<br>而数据就是回调函数中的JSON数据</p>
+<p>原理：<script>标签没有跨域限制。本站创建一个script元素，地址指向第三方的API网址，并提供一个回调函数。接收数据<br>第三方响应为json的数据分装json padding。 形容 callback({“name”:”hax”,”gender”,Male})<br>这样，浏览器会调用callback函数。并传递解析后的JSON对象作为参数。<br>如：<script src="http://demoff.app.com/cross_domain.php?jsoncallback=addContents" ></script><br>数据返回后会被相应函数执行。<br>缺点：只能GET，无法解决不同域的连个页面之间的javascript调用问题。</p>
+<h2 id="0x03-document-domain-iframe-iframe-用来ajax通信"><a href="#0x03-document-domain-iframe-iframe-用来ajax通信" class="headerlink" title="0x03  document.domain + iframe( iframe 用来ajax通信)"></a>0x03  document.domain + iframe( iframe 用来ajax通信)</h2><p>首先架设一个网站中有一个iframe中包含不同域的页面。根据同源策略，主页面的 JS不可以获取iframe页面中的数据的。<br>这个时候，我们可以设置document.domain为相同的值。但是这个有个限制。document.domain只能设置本身和更高级域名。<br>这就要求两个页面的主域名必须相同。然后通过ajax正常交流数据</p>
+<h2 id="0x04-使用window-name-iframe"><a href="#0x04-使用window-name-iframe" class="headerlink" title="0x04  使用window.name + iframe"></a>0x04  使用window.name + iframe</h2><p>windows对象的name属性。该属性有个特征：在一个窗口的生命周期内，窗口所载入的所有页面都是属于一个windows.name的。每个页面<br>窗口载入的所有页面都是共享一个windows.name的。每个页面对windows.name都有读写权限。windows.name是持久存在一个窗口载入过的所有页面中的。<br>这个我自己也不是很理解。感觉上是通过windows.name这个来传递数据</p>
+<h2 id="0x05-使用Windows-postMessage方法"><a href="#0x05-使用Windows-postMessage方法" class="headerlink" title="0x05  使用Windows.postMessage方法"></a>0x05  使用Windows.postMessage方法</h2><p>HTML5引进了新方法postMessage。可以在不同的windows下传递数据不受域的影响。目前IE8+,Firefox，chrome,Opera等浏览器都支持该方法。</p>
+<p>windows.postMessage(message,targetOrigin)</p>
+<p>首先调用这个方法的windows对象是消息对象。message为要发送的信息，类型只能为字符串。下一个参数是限定接受消息的对象所在的域<br>。可以使用通配符。<br>需要接收消息的window对象，可通过监听自身的message事件来获取传过来的消息，消息内容储存在该事件对象的data属性中。</p>
+<p>这个我的理解是远程对象调用postMeassge()并设置好接受对象域。接受对象域就可已接受到内容。</p>
+<h2 id="0x06-flash跨域"><a href="#0x06-flash跨域" class="headerlink" title="0x06 flash跨域"></a>0x06 flash跨域</h2><p>在需要跨域的服务器上吗设置crossdomain.xml.这个服务就被配置成为可以被其它域跨域访问的服务器了。<br>crossdomain.xml文件，该文件限制了flash是否可以跨域读写数据以及允许从什么地方跨域读写数据。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -316,7 +467,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -434,157 +585,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/跨域方案枚举/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/24/跨域方案枚举/" itemprop="url">
-                  跨域方案枚举
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posté le</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-03-24 17:34:12 / Updated at: 17:36:26" itemprop="dateCreated datePublished" datetime="2018-03-24T17:34:12+08:00">2018-03-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JS跨域问题重理解"><a href="#JS跨域问题重理解" class="headerlink" title="JS跨域问题重理解"></a>JS跨域问题重理解</h1><p>为什么跨域会出现问题？因为浏览器设定的同源策略是的JS文件不能随心所欲的从任意网站读取数据。一定程度上保证了数据的安全性。</p>
-<p>跨域的问题是跨域前端和被跨域后端的问题。<br>如果需要进行跨域数据传输。那么可以是用一下方法</p>
-<h2 id="0x01-使用跨域资源共享（CORS）"><a href="#0x01-使用跨域资源共享（CORS）" class="headerlink" title="0x01  使用跨域资源共享（CORS）"></a>0x01  使用跨域资源共享（CORS）</h2><p>CORS定义了浏览器域服务器应该如何沟通。CORS背后的基本思想就是使用自定义的HTTP头部让浏览器与服务器进行沟通。<br>如渗透中常常见到的： Access-Control-Allow-Origin: * </p>
-<h2 id="0x02-使用JSONP"><a href="#0x02-使用JSONP" class="headerlink" title="0x02  使用JSONP"></a>0x02  使用JSONP</h2><p>JSONP 学名 填充式JSON。<br>JSONP名字有些抽象，但是其实是JSON对象的一种用法。抽象的概括一下就是被包含在函数调用中的JSON。<br>callback({“name”,”name1”});<br>由上行代码可看出JSONP由两部分组成:回调函数和JSON数据。<br>回调函数是在响应到来的时候页面执行的函数。<br>而数据就是回调函数中的JSON数据</p>
-<p>原理：<script>标签没有跨域限制。本站创建一个script元素，地址指向第三方的API网址，并提供一个回调函数。接收数据<br>第三方响应为json的数据分装json padding。 形容 callback({“name”:”hax”,”gender”,Male})<br>这样，浏览器会调用callback函数。并传递解析后的JSON对象作为参数。<br>如：<script src="http://demoff.app.com/cross_domain.php?jsoncallback=addContents" ></script><br>数据返回后会被相应函数执行。<br>缺点：只能GET，无法解决不同域的连个页面之间的javascript调用问题。</p>
-<h2 id="0x03-document-domain-iframe-iframe-用来ajax通信"><a href="#0x03-document-domain-iframe-iframe-用来ajax通信" class="headerlink" title="0x03  document.domain + iframe( iframe 用来ajax通信)"></a>0x03  document.domain + iframe( iframe 用来ajax通信)</h2><p>首先架设一个网站中有一个iframe中包含不同域的页面。根据同源策略，主页面的 JS不可以获取iframe页面中的数据的。<br>这个时候，我们可以设置document.domain为相同的值。但是这个有个限制。document.domain只能设置本身和更高级域名。<br>这就要求两个页面的主域名必须相同。然后通过ajax正常交流数据</p>
-<h2 id="0x04-使用window-name-iframe"><a href="#0x04-使用window-name-iframe" class="headerlink" title="0x04  使用window.name + iframe"></a>0x04  使用window.name + iframe</h2><p>windows对象的name属性。该属性有个特征：在一个窗口的生命周期内，窗口所载入的所有页面都是属于一个windows.name的。每个页面<br>窗口载入的所有页面都是共享一个windows.name的。每个页面对windows.name都有读写权限。windows.name是持久存在一个窗口载入过的所有页面中的。<br>这个我自己也不是很理解。感觉上是通过windows.name这个来传递数据</p>
-<h2 id="0x05-使用Windows-postMessage方法"><a href="#0x05-使用Windows-postMessage方法" class="headerlink" title="0x05  使用Windows.postMessage方法"></a>0x05  使用Windows.postMessage方法</h2><p>HTML5引进了新方法postMessage。可以在不同的windows下传递数据不受域的影响。目前IE8+,Firefox，chrome,Opera等浏览器都支持该方法。</p>
-<p>windows.postMessage(message,targetOrigin)</p>
-<p>首先调用这个方法的windows对象是消息对象。message为要发送的信息，类型只能为字符串。下一个参数是限定接受消息的对象所在的域<br>。可以使用通配符。<br>需要接收消息的window对象，可通过监听自身的message事件来获取传过来的消息，消息内容储存在该事件对象的data属性中。</p>
-<p>这个我的理解是远程对象调用postMeassge()并设置好接受对象域。接受对象域就可已接受到内容。</p>
-<h2 id="0x06-flash跨域"><a href="#0x06-flash跨域" class="headerlink" title="0x06 flash跨域"></a>0x06 flash跨域</h2><p>在需要跨域的服务器上吗设置crossdomain.xml.这个服务就被配置成为可以被其它域跨域访问的服务器了。<br>crossdomain.xml文件，该文件限制了flash是否可以跨域读写数据以及允许从什么地方跨域读写数据。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/11/metasploit自动化攻击/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -624,7 +624,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -841,7 +841,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -983,7 +983,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -1131,7 +1131,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -1271,7 +1271,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -1427,7 +1427,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -1582,7 +1582,7 @@ CSP策略又分为两类：Content-Security-Policy 和 Content-Security-Policy-R
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -1744,7 +1744,7 @@ CSP策略又分为两类：Content-Security-Policy 和 Content-Security-Policy-R
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -1879,7 +1879,7 @@ CSP策略又分为两类：Content-Security-Policy 和 Content-Security-Policy-R
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">18</span>
-                    <span class="site-state-item-name">articles</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -1902,7 +1902,7 @@ CSP策略又分为两类：Content-Security-Policy 和 Content-Security-Policy-R
                       
                     
                     <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">tags</span>
+                    <span class="site-state-item-name">Tags</span>
                   
                 </div>
               
@@ -1955,7 +1955,7 @@ CSP策略又分为两类：Content-Security-Policy 和 Content-Security-Policy-R
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
@@ -1963,7 +1963,7 @@ CSP策略又分为两类：Content-Security-Policy 和 Content-Security-Policy-R
 
 
 
-  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
 
 
 
@@ -2055,6 +2055,13 @@ CSP策略又分为两类：Content-Security-Policy 和 Content-Security-Policy-R
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
 
   
 
