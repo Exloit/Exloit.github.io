@@ -1,93 +1,112 @@
-# ---------------------------------------------------------------
-# Site Information Settings
-# ---------------------------------------------------------------
-# title can include HTML code.
-title: A-RSnippet <a class="github-button" href="https://github.com/huyingjie/hexo-theme-A-RSnippet" data-icon="octicon-star" data-show-count="true" aria-label="Star huyingjie/hexo-theme-A-RSnippet on GitHub">Star</a>
-description: A website for A-RSnippet Hexo Theme
-author: Yingjie Hu
-language: en
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Expl0it
+subtitle: Don't Be Shy
+author: Expl0it
+language:
 timezone:
-
-# custom Site settings
-SEOTitle: An A-RSnippet Hexo Theme
-keyword: "hexo, hexo theme, A-RSnippet, responsive, bootstrap" # seo key words
-
-favicon: # your favicon png
-# custom end
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.uytools.com/       # Note: don't forget to modify the CNAME file to your url
 root: /
-# :year/:month/:day/:title/
-permalink: :title/
+#permalink: :year/:month/:day/:title/
+permalink: :category/:title/
 permalink_defaults:
+  lang: en
 
-footer:
-# Specify the date when the site was setup.
-# If not defined, current year will be used.
-  since: 2015
+#Custom Setting Start
 
-  # Icon between year and copyright info.
-  # From: http://fontawesome.io/
-  # Example: user
-  icon: heart
+# Site settings
+SEOTitle: 安全技术 | Blog
+email: e-mail_address
+description: ""
+keyword: ""
+header-img: /img/header_img/home.jpg
+article-img: /img/article_header/article_bg.jpg
+404-img: /img/header_img/404.png
+signature: false #show signature
+signature-img: img/signature/BeanTechSign-white.png 
 
-  # If not defined, will be used `author` from Hexo main config.
-  copyright:
-  # -------------------------------------------------------------
-  # Hexo link (Powered by Hexo).
-  powered: true
-  # Theme & scheme info link (Theme - A-RSnippet).
-  theme: true
 
-  # -------------------------------------------------------------
-  # Any custom text can be defined here.
-  # custom_text: Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>
-
-# ---------------------------------------------------------------
-# Menu Settings
-# ---------------------------------------------------------------
-menu:
-  home: /
-  Tutorial: /tutorial/
-  LeetCode-category: /leetcode-category/
-  LeetCode-tag: /leetcode-tag/
-  archives: /archives/
-  tags: /tags/
-  projects: /portfolio-slim/
-  support: /support/
-  RSS: /atom.xml
-
-# ---------------------------------------------------------------
 # SNS settings
-# ---------------------------------------------------------------
-# Set rss to false to disable feed link.
-# Leave url as empty to use site's feed link.
-# Set url to specific value if you have burned your feed already.
-rss:
-  enable: true
-  url:                    # if empty, use default url, root_path/atom.xml
+# RSS: false
+# weibo_username:     Demonbaneen
+# zhihu_username:     Demonbane
+github_username:    exloit
+# twitter_username:   Demonbane_x
+# facebook_username:  xxx
+# linkedin_username:  xxx
 
-# email: xxx@gmail.com
-# weibo_username:
-# zhihu_username:
-github_username: huyingjie
-twitter_username: yingjieYJH
-# facebook_username:
-# linkedin_username:
+# Build settings
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
-# ---------------------------------------------------------------
+
+# Disqus settings
+#disqus_username: your-disqus-ID
+
+# Duoshuo settings
+# duoshuo_username: kaijun
+# Share component is depend on Comment so we can NOT use share only.
+#duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+
+
+# Analytics settings
+#Baidu Analytics
+ba_track_id: xxx
+# Google Analytics
+ga_track_id: 'UA-XXXXXXXX-X'          # Format: UA-xxxxxx-xx
+ga_domain: yoursite
+
+
 # Sidebar settings
-# ---------------------------------------------------------------
-sidebar: true
-sidebar-about-description: data scientist
-sidebar-avatar-url: https://avatars3.githubusercontent.com/u/4664280?s=460&v=4
-sidebar-description-after-icons: <a href="https://www.patreon.com/arsnippet" target="_blank"><img src="/img/patreon.png" alt="support my work at patron"></a><br><br><a href="https://arsnippet.freeflarum.com/" target="_blank"><img src="/img/forum.jpg" alt="support my work at patron"></a><br><br><a href="https://discord.gg/CB6CPzq" target="_blank"><img src="/img/discord.png" alt="Join the Discord"></a>
+sidebar: true                       # whether or not using Sidebar.
+sidebar-about-description: "Stay hungry,Stay foolish"
+sidebar-avatar: /img/avatar/ironman.png      # use absolute URL, seeing it's used in both `/` and `/about/`
+widgets:
+- featured-tags
+- short-about
+- recent-posts
+- friends-blog
+- archive
+#- category
 
-# ---------------------------------------------------------------
-# Hexo official settings
-# ---------------------------------------------------------------
+# widget behavior
+## Archive
+archives-img: /img/header_img/archives-widget.jpg
+archive_type: 'monthly'
+show_count: true
+
+
+## Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 0              # A tag will be featured if the size of it is more than this condition value
+
+
+## Friends
+friends: [
+    {
+        title: "CSDN Blog 胡伟煌",
+        href: "http://blog.csdn.net/huwh_"
+    },
+    {
+        title: "DockOne 胡伟煌",
+        href: "http://dockone.io/people/胡伟煌"
+    },
+    {
+        title: "阿里云栖社区 胡伟煌",
+        href: "https://yq.aliyun.com/u/huweihuang"
+    }
+]
+
+
+#Custom Setting End
+
+
+
 # Directory
 source_dir: source
 public_dir: public
@@ -98,11 +117,11 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
-# Writing: Defined by Hexo
-new_post_name: :title.md                  # File name of new posts
+# Writing
+new_post_name: :title.md # File name of new posts
 default_layout: post
-titlecase: false                          # Transform title into titlecase
-external_link: true                       # Open external links in new tab
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
@@ -115,153 +134,103 @@ highlight:
   tab_replace:
 
 # Category & Tag
-default_category: uncategorized
+default_category: article
 category_map:
+  Docker: docker
+  Kubernetes: kubernetes
+  Golang: golang
+  Nginx: nginx
+  Etcd: etcd
+  Database: database
+
 tag_map:
+home_posts_tag: true # show posts tags
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: MMM D, YYYY
+date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 8
-pagination_dir: page
+per_page: 10
+pagination_dir: archives
+
+archive_generator:
+  per_page: 10
+  yearly: true
+  monthly: true
+  daily: false
+  
+# Markdown-it config
+## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: true
+    linkify: true
+    typographer: true
+    quotes: '“”‘’'
+  
+# Extensions
+## Plugins: https://hexo.io/plugins/
+
+# recommended-posts
+# reference: https://github.com/huiwang/hexo-recommended-posts
+# recommended_posts:
+#   server: https://api.truelaurel.com #后端推荐服务器地址
+#   timeoutInMillis: 10000 #服务时长，超过此时长，则使用离线推荐模式
+#   internalLinks: 3 #内部文章数量
+#   externalLinks: 0 #外部文章数量
+#   autoDisplay: true, #自动在文章底部显示推荐文章
+#   titleHtml: <h2>推荐文章<span style="font-size:0.45em; color:gray"></span></h2> #自定义标题
+
+# hexo-tag-aplayer
+# reference: https://github.com/MoePlayer/hexo-tag-aplayer
+# aplayer:
+#   meting: true
+
+# MeingJS support for Aplayer
+# reference: https://github.com/metowolf/MetingJS & https://github.com/MoePlayer/APlayer
+metingjs: false
+data-id: 2423410161
+data-server: netease  
+data-type: playlist
+data-fixed: true
+  # data-mini:
+  # data-autoplay:    
+
+# Reward
+reward: false
+reward_comment: 赞赏一下
+wechatpay: wechatpay_url
+alipay: alipay_url
+
+# Share
+# Reference: https://github.com/overtrue/share.js
+share: true
+
+# Reference: https://github.com/YuyingWu/hexo-generator-index-plus
+index_generator_plus:
+  path: ''
+  per_page: 10
 
 ## Themes: https://hexo.io/themes/
-theme: a-rsnippet
+theme: huweihuang
+
+#sitemap
+sitemap:
+  path: sitemap.xml
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type:
-  repo:
-  branch:
-
-
-# ---------------------------------------------------------------
-# Layout settings: homepage
-# ---------------------------------------------------------------
-# If enable, update date will show on the cover photo.
-index_update_date_enable: false
-
-# ---------------------------------------------------------------
-# Layout settings: post layout & leetcode layout
-# ---------------------------------------------------------------
-# If enable, update date will show in the header.
-post_update_date_enable: true
-
-# Can contain HTML
-# Appear at the begginning of the post
-content_before_post: <div class="subscribe"><a href="http://eepurl.com/dh6iCD" target="_blank">Get Updated for Each Release!</a></div><p>
-# Can contain HTML
-# Appear at the end of the post
-content_after_post: <a href="https://www.patreon.com/arsnippet" target="_blank"><img src="/img/patreon.png" alt="support my work at patron"></a> <a href="https://arsnippet.freeflarum.com/" target="_blank"><img src="/img/forum.jpg" alt="support my work at patron"></a> <a href="https://discord.gg/CB6CPzq" target="_blank"><img src="/img/discord.png" alt="Join the Discord"></a>
-
-# default cover image
-# example: animated gif as header
-cover_default_img: /img/sky-clouds-moon-horizon.jpg?h=350&auto=compress&cs=tinysrgb
-
-
-# Table Of Contents in the Sidebar
-toc:
-  enable: true
-  # Automatically add list number to toc.
-  number: true
-
-# ---------------------------------------------------------------
-# Layout settings: page layout
-# ---------------------------------------------------------------
-
-# ---------------------------------------------------------------
-# Layout settings: arhive layout
-# ---------------------------------------------------------------
-# archive page title
-archive:
-    title: Archives
-    subtitle: Cool?
-
-# ---------------------------------------------------------------
-# Layout settings: poem layout
-# ---------------------------------------------------------------
-
-# ---------------------------------------------------------------
-# Layout settings: portfolio-slim layout
-# ---------------------------------------------------------------
-
-# ---------------------------------------------------------------
-# Layout settings: archive layout
-# ---------------------------------------------------------------
-
-# ---------------------------------------------------------------
-# Layout settings: 404 layout
-# ---------------------------------------------------------------
-
-# ---------------------------------------------------------------
-# Layout settings: list-category-leetcode layout
-# ---------------------------------------------------------------
-
-# ---------------------------------------------------------------
-# Layout settings: list-tag-leetcode layout
-# ---------------------------------------------------------------
-
-# ---------------------------------------------------------------
-# Layout settings: 404 layout
-# ---------------------------------------------------------------
-
-#################################################################
-# ---------------------------------------------------------------
-# Third Party Services Settings
-# ---------------------------------------------------------------
-#################################################################
-# MathJax Support
-mathjax:
-  enable: true
-  #per_page: true
-  cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-
-# ---------------------------------------------------------------
-# Comment settings
-# ---------------------------------------------------------------
-# Disqus settings
-disqus_shortname: hexo-a-rsnippet
-
-# Use livere
-# use_livere: false
-# livere_uid: MTAyMC8zMz
-
-# ---------------------------------------------------------------
-# Analytics settings
-# ---------------------------------------------------------------
-# Baidu Analytics
-baidu_analytics:
-# Google Analytics
-google_analytics: UA-38355881-1            # Format: UA-xxxxxx-xx
-# Google Webmaster tools verification setting
-# See: https://www.google.com/webmasters/
-# Click "Alternative methods" => Select "HTML tag" => copy the string in the "content" property of "meta" element
-# <meta name="google-site-verification" content="xxxxxx" />
-# Input xxxxxx below
-google_site_verification: wtCjI-zcpr2FYwWS3sI4OWzMK9e7VomDrZyxpVUUIng
-
-bing_site_verification:
-yandex_site_verification:
-
-# ---------------------------------------------------------------
-# Share
-# ---------------------------------------------------------------
-add_this_id: ra-5272bc2a7b3c1ddc
-# Enable/Disable Update date
-
-# ---------------------------------------------------------------
-# Search
-# ---------------------------------------------------------------
-# search api , set your custom key
-# It is not working now. It is a feature in the future.
-# swiftype_key:
-
-# Theme version
-version: 0.1.0
+# repository: https://github.com/huweihuang/xxxxxxx.github.io.git
+# branch: master
+#deploy:
+#  type: git
+#  repository: https://github.com/huweihuang/hexo-theme-huweihuang
+#  branch: gh-pages
+#  message: Update CNAME
