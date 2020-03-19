@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 泰涅布里斯
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: Expl0it
 language: en
 timezone: ''
 
@@ -93,9 +93,15 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: prontera
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: ''
+
+archive_generator:
+  per_page: 0
+  yearly: false
+  monthly: true
+  daily: false
